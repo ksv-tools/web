@@ -1,4 +1,7 @@
 /**
+ * @OnlyCurrentDoc
+ * (Dòng trên giới hạn quyền: script chỉ đọc/ghi được đúng bảng tính chứa nó, không đụng tới bảng tính khác.)
+ *
  * KSV Tools – ghi lượt tải công cụ vào Google Sheet.
  *
  * Cách cài (một lần):
