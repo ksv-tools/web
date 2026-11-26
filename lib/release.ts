@@ -10,7 +10,7 @@ export type Release = {
 
 /** Kho chứa bản cài của từng công cụ chạy trên máy. */
 const RELEASE_REPOS: Record<string, { repo: string; asset: string }> = {
-  "tach-ho-so": { repo: "daiyeusu/tach-ho-so-ban-cai", asset: "TachHoSo.exe" },
+  "tach-ho-so": { repo: "ksv-tools/tach-ho-so-ban-cai", asset: "TachHoSo.exe" },
 };
 
 export async function latestRelease(slug: string): Promise<Release | null> {

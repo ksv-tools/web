@@ -56,6 +56,6 @@ Muốn thêm Facebook hoặc X sau này: thêm vào `PROVIDERS` trong `lib/confi
 ## Giới hạn hiện tại
 
 - Lượt tải được ghi và giới hạn trên web, nhưng file cài vẫn nằm ở kho GitHub **công khai**
-  (`daiyeusu/tach-ho-so-ban-cai`, vì chức năng tự cập nhật trong app đọc từ đó). Ai có đường link trực tiếp vẫn tải
+  (`ksv-tools/tach-ho-so-ban-cai`, vì chức năng tự cập nhật trong app đọc từ đó). Ai có đường link trực tiếp vẫn tải
   được mà không qua web. Muốn chặn hẳn thì phải chuyển file sang kho lưu trữ riêng tư và đổi cách cập nhật của app.
 - Duyệt người dùng áp dụng chung cho mọi công cụ; chưa có phân quyền theo từng công cụ.
