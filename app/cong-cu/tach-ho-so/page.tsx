@@ -77,50 +77,11 @@ export default async function TachHoSoPage() {
               App tự kiểm tra bản mới trong <strong>Cài đặt → Cập nhật app</strong>; cài đặt và kết quả cũ được giữ nguyên.
             </p>
 
-            <h2>Máy đọc được gì</h2>
-            <div className="table-wrap">
-              <table className="table">
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Không dùng AI</th>
-                    <th>Có khóa Gemini</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Ranh giới, loại tài liệu</td>
-                    <td>Có (đọc chữ trên máy)</td>
-                    <td>Có</td>
-                  </tr>
-                  <tr>
-                    <td>Tiêu đề, họ tên in sẵn</td>
-                    <td>Có</td>
-                    <td>Có</td>
-                  </tr>
-                  <tr>
-                    <td>Ngày, giờ, tên viết tay</td>
-                    <td>Để trống, không đoán</td>
-                    <td>AI đọc</td>
-                  </tr>
-                  <tr>
-                    <td>Dữ liệu gửi ra ngoài</td>
-                    <td>Không</td>
-                    <td>Ảnh cắt phần đầu trang và dòng ngày ký, gửi lên Google</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <h2>Lưu ý bảo mật</h2>
+            <h2>Lưu ý khi sử dụng</h2>
             <p>
-              Không dùng AI thì app xử lý <strong>hoàn toàn trên máy</strong>, không gửi gì ra ngoài. Khi bật AI, một phần
-              ảnh trang (tiêu đề, vài dòng đầu, dòng ngày ký) được gửi lên Google để đọc chữ viết tay. Phần này có thể chứa
-              họ tên và một phần nội dung.
-            </p>
-            <p>
-              Nếu dùng AI, hãy dùng khóa Gemini <strong>gói trả phí</strong> (dữ liệu gói miễn phí có thể được Google dùng
-              để cải thiện sản phẩm) và kiểm tra quy định của đơn vị trước khi dùng với hồ sơ thật.
+              App xử lý hồ sơ <strong>ngay trên máy tính của bạn</strong>; trang web này không nhận hay lưu file hồ sơ.
+              Một số chức năng nâng cao là tùy chọn, mặc định tắt và chỉ hoạt động khi bạn tự cài đặt. Khi dùng với hồ sơ
+              thật, hãy tuân thủ quy định về bảo mật của đơn vị.
             </p>
           </article>
 
