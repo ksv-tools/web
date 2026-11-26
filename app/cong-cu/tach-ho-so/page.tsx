@@ -3,24 +3,14 @@ import Link from "next/link";
 import { DownloadPanel } from "@/components/DownloadPanel";
 import { PageHead } from "@/components/PageHead";
 import { latestRelease } from "@/lib/release";
-import { getUser } from "@/lib/session";
-import { startOfTodayVN, store } from "@/lib/store";
 
 export const metadata: Metadata = {
   title: "Tách hồ sơ scan",
   description: "Chia file PDF scan nhiều tài liệu thành từng văn bản, đặt tên theo tiêu đề, xếp theo ngày, lập mục lục.",
 };
 
-const ERRORS: Record<string, string> = {
-  "het-luot": "Bạn đã dùng hết lượt tải hôm nay.",
-  "cho-duyet": "Tài khoản đang chờ duyệt.",
-  "bi-khoa": "Tài khoản đã bị khóa.",
-  "khong-tai-duoc": "Chưa lấy được bản cài. Thử lại sau ít phút.",
-};
-
-export default async function TachHoSoPage({ searchParams }: { searchParams: Promise<{ loi?: string }> }) {
-  const [{ loi }, release, user] = await Promise.all([searchParams, latestRelease("tach-ho-so"), getUser()]);
-  const usedToday = user ? await store.countDownloadsSince(user.id, startOfTodayVN()) : 0;
+export default async function TachHoSoPage() {
+  const release = await latestRelease("tach-ho-so");
 
   return (
     <>
@@ -135,13 +125,7 @@ export default async function TachHoSoPage({ searchParams }: { searchParams: Pro
           </article>
 
           <aside className="aside">
-            <DownloadPanel
-              slug="tach-ho-so"
-              release={release}
-              user={user}
-              usedToday={usedToday}
-              error={loi ? ERRORS[loi] : undefined}
-            />
+            <DownloadPanel slug="tach-ho-so" initial={release} />
             <div className="panel">
               <h3>Yêu cầu máy</h3>
               <p className="panel-msg" style={{ marginTop: 0 }}>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/PageHead";
-import { defaultDailyQuota } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Hướng dẫn" };
 
@@ -10,7 +9,7 @@ export default function GuidePage() {
     <>
       <PageHead
         title="Hướng dẫn sử dụng"
-        lead="Đăng nhập, chờ duyệt, rồi dùng hoặc tải công cụ."
+        lead="Đăng nhập bằng Google, rồi dùng hoặc tải công cụ."
         crumbs={[{ href: "/huong-dan", label: "Hướng dẫn" }]}
       />
       <section className="section" style={{ paddingTop: 56 }}>
@@ -18,24 +17,18 @@ export default function GuidePage() {
           <article className="prose" style={{ maxWidth: 760 }}>
             <h2>1. Đăng nhập</h2>
             <p>
-              Vào <Link href="/dang-nhap" className="link">Đăng nhập</Link>, chọn <em>Tiếp tục với Google</em>. Trang chuyển
-              sang Google để bạn chọn tài khoản, rồi quay lại. Không cần tạo mật khẩu mới.
+              Vào <Link href="/dang-nhap" className="link">Đăng nhập</Link>, chọn <em>Tiếp tục với Google</em>. Google mở
+              một cửa sổ nhỏ để bạn chọn tài khoản. Không cần tạo mật khẩu mới. Trình duyệt nhớ đăng nhập trong 30 ngày.
             </p>
 
-            <h2>2. Chờ duyệt</h2>
-            <p>
-              Lần đầu đăng nhập, tài khoản ở trạng thái <strong>Chờ duyệt</strong>. Người quản trị duyệt để bảo đảm chỉ
-              đồng nghiệp mới dùng được. Xem trạng thái ở <Link href="/tai-khoan" className="link">Tài khoản của tôi</Link>.
-            </p>
-
-            <h2>3. Dùng công cụ</h2>
+            <h2>2. Dùng công cụ</h2>
             <ul>
               <li>
                 <strong>Công cụ dùng ngay</strong> chạy trong trình duyệt; dữ liệu bạn nhập không gửi lên trang.
               </li>
               <li>
-                <strong>Công cụ tải về máy</strong> là app Windows. Mỗi tài khoản tải được {defaultDailyQuota} lượt mỗi
-                ngày (có thể khác nếu người quản trị điều chỉnh), làm mới lúc 0 giờ. App có sẵn chức năng tự cập nhật nên
+                <strong>Công cụ tải về máy</strong> là app Windows. Đăng nhập xong, nút <em>Tải về</em> hiện ở trang
+                của công cụ. App có sẵn chức năng tự cập nhật nên
                 thường chỉ cần tải một lần.
               </li>
             </ul>

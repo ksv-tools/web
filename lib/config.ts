@@ -1,34 +1,23 @@
-/** Cấu hình đọc từ biến môi trường (.env.local trên máy, Environment Variables trên Vercel). */
+/** Cấu hình chung của web. Mọi giá trị ở đây đều công khai (web là trang tĩnh, ai cũng xem được mã). */
 
 export const SITE_NAME = "KSV Tools";
 export const SITE_TAGLINE = "Không gian tiện ích số dành cho Kiểm sát viên";
 export const AUTHOR = "Trần Hồng Minh";
 export const AUTHOR_UNIT = "VKSND khu vực 3 Ninh Bình";
 
-export const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL ?? "";
-export const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
-export const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY ?? "";
-
-/** Đã cấu hình Supabase: đăng nhập thật. */
-export const hasSupabase = Boolean(supabaseUrl && supabaseAnonKey && supabaseServiceKey);
-
-/** Chế độ thử: chưa có Supabase và đang chạy trên máy (npm run dev). Không bao giờ bật khi đưa lên mạng. */
-export const demoMode = !hasSupabase && process.env.NODE_ENV !== "production";
-
-export const adminEmails = (process.env.ADMIN_EMAILS ?? "")
-  .split(",")
-  .map((s) => s.trim().toLowerCase())
-  .filter(Boolean);
-
-export const defaultDailyQuota = Math.max(0, Number.parseInt(process.env.DEFAULT_DAILY_QUOTA ?? "5", 10) || 5);
-
-export function isAdminEmail(email: string | null | undefined): boolean {
-  return Boolean(email) && adminEmails.includes(email!.toLowerCase());
-}
-
 /**
- * Cách đăng nhập. Hiện chỉ dùng Google. Muốn thêm Facebook hay X sau này: thêm { id: "facebook", label: "Facebook" }
- * hoặc { id: "x", label: "X" } vào đây và bật mạng đó trong Supabase (biểu tượng đã có sẵn trong components/Icon.tsx).
+ * Client ID của Google (Google Cloud Console → Credentials → OAuth client ID, loại Web application).
+ * Đây là mã công khai, không phải khóa bí mật. Để trống thì trên máy dùng đăng nhập thử.
  */
-export const PROVIDERS = [{ id: "google", label: "Google" }] as const;
-export type ProviderId = (typeof PROVIDERS)[number]["id"];
+export const GOOGLE_CLIENT_ID = process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID ?? "";
+
+/** Địa chỉ Web app của Apps Script ghi lượt tải vào Google Sheet (xem google/ghi-luot-tai.gs). Để trống thì không ghi. */
+export const LOG_URL = process.env.NEXT_PUBLIC_LOG_URL ?? "";
+
+/** Chưa có Client ID và đang chạy trên máy (npm run dev): nút đăng nhập tạo tài khoản giả. */
+export const demoMode = !GOOGLE_CLIENT_ID && process.env.NODE_ENV !== "production";
+
+/** Thêm đường dẫn gốc (ví dụ /web) cho các liên kết không đi qua next/link. */
+export function withBase(path: string): string {
+  return `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${path}`;
+}

@@ -1,11 +1,10 @@
 import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { ToolCard } from "@/components/ToolCard";
-import { getUser } from "@/lib/session";
+import { SignedOutOnly } from "@/components/UserMenu";
 import { AREAS, TOOLS } from "@/lib/tools";
 
-export default async function Home() {
-  const user = await getUser();
+export default function Home() {
   const ready = TOOLS.filter((t) => t.status === "ready").length;
   return (
     <>
@@ -28,11 +27,11 @@ export default async function Home() {
             <Link href="/cong-cu" className="btn btn-primary btn-lg">
               Khám phá công cụ <Icon name="arrow" size={18} />
             </Link>
-            {!user && (
+            <SignedOutOnly>
               <Link href="/dang-nhap" className="btn btn-light btn-lg">
                 Đăng nhập
               </Link>
-            )}
+            </SignedOutOnly>
           </div>
           <a href="#cong-cu" className="hero-down" aria-label="Xem các công cụ">
             <Icon name="down" size={24} stroke={2} />
@@ -124,8 +123,8 @@ export default async function Home() {
                 <Icon name="lock" size={26} />
               </span>
               <div>
-                <h3>Chỉ người được duyệt</h3>
-                <p>Đăng nhập xong phải được duyệt mới tải được công cụ. Mỗi lượt tải đều được ghi lại.</p>
+                <h3>Đăng nhập để tải</h3>
+                <p>Đăng nhập bằng tài khoản Google mới tải được công cụ. Mỗi lượt tải đều được ghi lại.</p>
               </div>
             </div>
             <div className="note">
