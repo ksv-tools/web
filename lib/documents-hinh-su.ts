@@ -7,6 +7,8 @@ import type { DocTypeId, Effect, GroupId, IssuerId, LegalDoc } from "./documents
 
 /** Văn bản đã có file toàn văn và nguồn của file. */
 const FILES: Record<string, string> = {
+  "nq-04-2026-hdtp": "Hệ thống văn bản TANDTC (vbpq.toaan.gov.vn)",
+  "cv-250-2026-tandtc": "Tạp chí Tòa án nhân dân (đăng toàn văn)",
   "blhs-hop-nhat": "Cổng Thông tin điện tử Chính phủ",
   "bltths-hop-nhat": "Cổng Thông tin điện tử Chính phủ",
   "luat-vksnd-hop-nhat": "Cổng Thông tin điện tử Chính phủ",
@@ -36,6 +38,9 @@ const FILES: Record<string, string> = {
   "ttlt-01-2025-giam-dinh": "Công báo điện tử (congbao.chinhphu.vn)",
   "ttlt-03-2018-ghi-am": "Công báo điện tử (congbao.chinhphu.vn)",
 };
+
+/** Văn bản có toàn văn dạng trang HTML (trích từ nguồn đăng toàn văn) thay cho PDF. */
+const HTML_FILES = new Set(["cv-250-2026-tandtc"]);
 
 type Row = [
   id: string,
@@ -266,6 +271,7 @@ export const HINH_SU: LegalDoc[] = ROWS.map(
     note: note || undefined,
     issuerDetail,
     hasFile: id in FILES,
+    html: HTML_FILES.has(id),
     source: FILES[id],
   }),
 );

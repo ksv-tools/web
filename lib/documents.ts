@@ -103,6 +103,8 @@ export type LegalDoc = {
   note?: string;
   /** Có file toàn văn trong public/van-ban-goc/<id>.pdf. Chưa có thì trang xem hiện "đang cập nhật". */
   hasFile?: boolean;
+  /** Toàn văn là trang HTML (<id>.html) thay vì PDF. */
+  html?: boolean;
   /** Nguồn của bản toàn văn, ví dụ "Công báo" hoặc "vbpl.vn". */
   source?: string;
 };
@@ -138,4 +140,4 @@ export function getDoc(id: string | null): LegalDoc | undefined {
 export const docHref = (d: LegalDoc) => `/van-ban/xem?id=${d.id}`;
 
 /** Đường dẫn file toàn văn (chưa thêm đường dẫn gốc của web). */
-export const docFile = (d: LegalDoc) => `/van-ban-goc/${d.id}.pdf`;
+export const docFile = (d: LegalDoc) => `/van-ban-goc/${d.id}.${d.html ? "html" : "pdf"}`;

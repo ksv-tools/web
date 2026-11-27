@@ -85,7 +85,7 @@ export function DocViewer() {
           <div className="doc-paper">
             {d.hasFile ? (
               <>
-                <iframe src={`${file}#view=FitH`} title={`Toàn văn ${d.number}`} />
+                <iframe src={d.html ? file : `${file}#view=FitH`} title={`Toàn văn ${d.number}`} />
                 <p className="doc-mobile-hint">
                   Điện thoại không hiện được văn bản ở đây?{" "}
                   <a href={file} target="_blank" rel="noopener" className="link">
