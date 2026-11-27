@@ -15,7 +15,8 @@ import {
   ISSUERS,
   type IssuerId,
   type LegalDoc,
-  docLink,
+  docHref,
+  fmtDate,
   issuerName,
   typeName,
 } from "@/lib/documents";
@@ -30,8 +31,6 @@ function fold(s: string): string {
     .replace(/Đ/g, "D")
     .toLowerCase();
 }
-
-const fmtDate = (iso: string) => iso.split("-").reverse().join("/");
 
 type Filters = { group?: GroupId; issuer?: IssuerId; type?: DocTypeId };
 
@@ -79,7 +78,7 @@ function FieldDocs({ field, initialGroup }: { field: FieldId; initialGroup?: Gro
     () =>
       DOCUMENTS.filter((d) => d.field === field).map((d) => ({
         d,
-        text: fold([d.number, d.title, d.note, d.issuerDetail].join(" ")),
+        text: fold([d.name, d.number, d.title, d.note, d.issuerDetail].join(" ")),
       })),
     [field],
   );
@@ -90,7 +89,11 @@ function FieldDocs({ field, initialGroup }: { field: FieldId; initialGroup?: Gro
     (skip === "group" || !f.group || d.group === f.group) &&
     (skip === "issuer" || !f.issuer || d.issuer === f.issuer) &&
     (skip === "type" || !f.type || d.type === f.type);
-  const list = matchText.filter((d) => pass(d)).sort((a, b) => b.date.localeCompare(a.date));
+  // Luật giữ thứ tự sắp sẵn (bản hợp nhất trước, rồi bản gốc, luật sửa đổi); nhóm khác xếp mới nhất trước.
+  const order = (d: LegalDoc) => DOCUMENTS.indexOf(d);
+  const list = matchText
+    .filter((d) => pass(d))
+    .sort((a, b) => (a.group === "luat" && b.group === "luat" ? order(a) - order(b) : b.date.localeCompare(a.date)));
 
   const toggle = <K extends keyof Filters>(k: K, v: Filters[K]) =>
     setF((cur) => ({ ...cur, [k]: cur[k] === v ? undefined : v }));
@@ -141,7 +144,7 @@ function FieldDocs({ field, initialGroup }: { field: FieldId; initialGroup?: Gro
           type="search"
           value={q}
           onChange={(e) => setQ(e.target.value)}
-          placeholder="Tìm theo số hiệu hoặc nội dung, ví dụ: án treo, trả hồ sơ, 02/2018"
+          placeholder="Tìm theo tên hoặc số hiệu, ví dụ: bộ luật hình sự, án treo, ma túy, 02/2018"
           aria-label="Tìm văn bản"
         />
       </form>
@@ -174,11 +177,16 @@ function FieldDocs({ field, initialGroup }: { field: FieldId; initialGroup?: Gro
               {s.docs.length ? (
                 <ol className="doc-list">
                   {s.docs.map((d) => (
-                    <DocItem key={`${d.number}-${d.date}`} d={d} />
+                    <DocItem key={d.id} d={d} />
                   ))}
                 </ol>
               ) : (
-                <p className="empty">Chưa có văn bản trong nhóm này.</p>
+                <p className="empty">
+                  Chưa có văn bản trong nhóm này.{" "}
+                  <Link href="/de-xuat" className="link">
+                    Đề xuất văn bản
+                  </Link>
+                </p>
               )}
             </section>
           ))
@@ -191,24 +199,25 @@ function FieldDocs({ field, initialGroup }: { field: FieldId; initialGroup?: Gro
 }
 
 function DocItem({ d }: { d: LegalDoc }) {
-  const link = docLink(d);
   return (
     <li className="doc-item">
+      <Link className="doc-title" href={docHref(d)}>
+        {d.name}
+      </Link>
       <div className="doc-head">
         <span className="doc-num">{d.number}</span>
-        <span className="doc-date">Ban hành {fmtDate(d.date)}</span>
+        <span className="doc-date">{d.date.length > 4 ? `Ban hành ${fmtDate(d.date)}` : `Năm ${d.date}`}</span>
+        <span className="doc-date">{d.issuerDetail ?? issuerName(d.issuer)}</span>
       </div>
-      <a className="doc-title" href={link.href} target="_blank" rel="noopener noreferrer">
-        {d.title}
-      </a>
-      <p className="doc-issuer">{d.issuerDetail ?? issuerName(d.issuer)}</p>
+      {d.title !== d.name && <p className="doc-issuer">{d.title}</p>}
       {d.note && <p className="doc-note">{d.note}</p>}
       <div className="tool-meta">
         {d.effect && <span className={`tag ${EFFECT_LABEL[d.effect].cls}`}>{EFFECT_LABEL[d.effect].text}</span>}
         <span className="tag">{typeName(d.type)}</span>
-        <a className="doc-open" href={link.href} target="_blank" rel="noopener noreferrer">
-          {link.label} <Icon name="external" size={15} />
-        </a>
+        {!d.hasFile && <span className="tag tag-soon">Đang cập nhật toàn văn</span>}
+        <Link className="doc-open" href={docHref(d)}>
+          Xem văn bản <Icon name="arrow" size={15} />
+        </Link>
       </div>
     </li>
   );

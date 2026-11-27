@@ -188,3 +188,21 @@ export function logDownload(user: User, tool: string, version: string) {
     /* bỏ qua: không ghi được thì vẫn cho tải */
   }
 }
+
+export type Suggestion = { docName: string; number: string; field: string; link: string; message: string };
+
+/** Gửi đề xuất đăng tài liệu: Apps Script ghi vào trang "Đề xuất" của Google Sheet và gửi email báo người quản trị. */
+export async function sendSuggestion(user: User, s: Suggestion): Promise<boolean> {
+  if (!LOG_URL) return demoMode;
+  try {
+    await fetch(LOG_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ type: "de-xuat", credential: user.credential, name: user.name, email: user.email, ...s }),
+    });
+    return true;
+  } catch {
+    return false;
+  }
+}

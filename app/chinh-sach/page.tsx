@@ -26,6 +26,10 @@ export default function PolicyPage() {
               <li>công cụ, phiên bản và thời điểm tải.</li>
             </ul>
             <p>
+              Khi bạn gửi đề xuất tài liệu, trang ghi lại họ tên, email và nội dung đề xuất để người quản trị xem xét và
+              liên hệ khi cần.
+            </p>
+            <p>
               Trang <strong>không</strong> nhận mật khẩu Google của bạn, không đọc thư, danh bạ hay tệp trong tài khoản
               Google, và không nhận file hồ sơ. Các công cụ xử lý hồ sơ chạy trên máy của bạn.
             </p>

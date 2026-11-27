@@ -2,9 +2,13 @@
  * Văn bản pháp luật và hướng dẫn nghiệp vụ, chia theo 6 lĩnh vực; mỗi lĩnh vực chia nhóm: luật, thông tư, hướng dẫn.
  *
  * Thêm văn bản: thêm một mục vào DOCUMENTS (chọn lĩnh vực `field` và nhóm `group`). Chỉ ghi văn bản đã đối chiếu bản gốc.
- * `url` là đường dẫn tới bản gốc (cổng thông tin của cơ quan ban hành, vbpl.vn...). Để trống thì web tạo nút
- * tìm theo số hiệu.
+ * Văn bản được đọc ngay trên web: file PDF đặt trong public/van-ban-goc/ (tên file = `id`), trang /van-ban/xem?id=...
+ * hiển thị toàn văn. Văn bản quy phạm pháp luật và văn bản hành chính không thuộc đối tượng bảo hộ quyền tác giả
+ * (Luật Sở hữu trí tuệ, Điều 15) nên được đăng lại toàn văn; lấy bản từ nguồn chính thức (Công báo, vbpl.vn, cổng
+ * thông tin của cơ quan ban hành).
  */
+
+import { HINH_SU } from "./documents-hinh-su";
 
 /** Sáu lĩnh vực của mục Văn bản. `ready: false` thì hiện "Đang xây dựng". */
 export type FieldId = "hinh-su" | "dan-su" | "tha-hinh-su" | "tha-dan-su" | "khieu-nai" | "dang";
@@ -19,12 +23,13 @@ export const FIELDS: { id: FieldId; name: string; ready: boolean }[] = [
 ];
 
 /** Nhóm văn bản trong một lĩnh vực. */
-export type GroupId = "luat" | "thong-tu" | "huong-dan";
+export type GroupId = "luat" | "thong-tu" | "huong-dan" | "dia-phuong";
 
 export const GROUPS: { id: GroupId; name: string }[] = [
   { id: "luat", name: "Luật và bộ luật" },
   { id: "thong-tu", name: "Thông tư, thông tư liên tịch" },
   { id: "huong-dan", name: "Văn bản hướng dẫn, giải đáp" },
+  { id: "dia-phuong", name: "Văn bản liên ngành làm án tỉnh Ninh Bình" },
 ];
 
 export type IssuerId = "quoc-hoi" | "chinh-phu" | "lien-nganh" | "hdtp" | "tandtc" | "vksndtc" | "bo-nganh" | "dia-phuong";
@@ -77,11 +82,15 @@ export const EFFECT_LABEL: Record<Effect, { text: string; cls: string }> = {
 };
 
 export type LegalDoc = {
+  /** Mã ngắn, không dấu, dùng làm địa chỉ trang và tên file, ví dụ "nq-02-2018-hdtp". */
+  id: string;
+  /** Tên dễ tìm, hiện ở danh sách, ví dụ "Bộ luật Hình sự 2015, sửa đổi bổ sung 2025". */
+  name: string;
   /** Số hiệu, ví dụ "02/2018/NQ-HĐTP". */
   number: string;
   /** Trích yếu. */
   title: string;
-  /** Ngày ban hành, dạng YYYY-MM-DD. */
+  /** Ngày ban hành, dạng YYYY-MM-DD (chỉ biết năm thì ghi YYYY). */
   date: string;
   field: FieldId;
   group: GroupId;
@@ -92,14 +101,17 @@ export type LegalDoc = {
   effect?: Effect;
   /** Ghi chú ngắn: văn bản sửa đổi, thay thế... */
   note?: string;
-  url?: string;
+  /** Có file toàn văn trong public/van-ban-goc/<id>.pdf. Chưa có thì trang xem hiện "đang cập nhật". */
+  hasFile?: boolean;
+  /** Nguồn của bản toàn văn, ví dụ "Công báo" hoặc "vbpl.vn". */
+  source?: string;
 };
 
 /**
  * Danh sách đang được người quản trị duyệt (bản để duyệt: danh-sach-van-ban/*.xlsx).
  * Chỉ thêm vào đây những văn bản đã duyệt "Đăng".
  */
-export const DOCUMENTS: LegalDoc[] = [];
+export const DOCUMENTS: LegalDoc[] = [...HINH_SU];
 
 export function issuerName(id: IssuerId): string {
   return ISSUERS.find((i) => i.id === id)?.name ?? id;
@@ -113,8 +125,17 @@ export function typeName(id: DocTypeId): string {
   return DOC_TYPES.find((t) => t.id === id)?.name ?? id;
 }
 
-/** Đường dẫn mở văn bản: bản gốc nếu có, không thì tìm theo số hiệu. */
-export function docLink(d: LegalDoc): { href: string; label: string } {
-  if (d.url) return { href: d.url, label: "Xem văn bản" };
-  return { href: `https://www.google.com/search?q=${encodeURIComponent(`"${d.number}"`)}`, label: "Tìm văn bản" };
+/** Ngày dạng dd/mm/yyyy; chỉ có năm thì giữ năm. */
+export function fmtDate(iso: string): string {
+  return iso.split("-").reverse().join("/");
 }
+
+export function getDoc(id: string | null): LegalDoc | undefined {
+  return id ? DOCUMENTS.find((d) => d.id === id) : undefined;
+}
+
+/** Trang đọc văn bản trên web. */
+export const docHref = (d: LegalDoc) => `/van-ban/xem?id=${d.id}`;
+
+/** Đường dẫn file toàn văn (chưa thêm đường dẫn gốc của web). */
+export const docFile = (d: LegalDoc) => `/van-ban-goc/${d.id}.pdf`;

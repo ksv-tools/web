@@ -35,6 +35,9 @@ export function Footer() {
               <Link href="/van-ban">Văn bản hướng dẫn</Link>
             </li>
             <li>
+              <Link href="/de-xuat">Đề xuất tài liệu</Link>
+            </li>
+            <li>
               <Link href="/huong-dan">Hướng dẫn sử dụng</Link>
             </li>
             <li>

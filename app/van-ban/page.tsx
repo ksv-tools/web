@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Suspense } from "react";
 import { DocsBrowser } from "@/components/DocsBrowser";
 import { PageHead } from "@/components/PageHead";
@@ -17,7 +18,13 @@ export default function DocsPage() {
         image="/anh/don-vi-tuyen-truyen.webp"
         lead="Luật, thông tư liên tịch, nghị quyết Hội đồng Thẩm phán, giải đáp nghiệp vụ của Tòa án, Viện kiểm sát, liên ngành và địa phương — chia theo lĩnh vực để tra cứu nhanh."
         crumbs={[{ href: "/van-ban", label: "Văn bản hướng dẫn" }]}
-      />
+      >
+        <div style={{ marginTop: 24 }}>
+          <Link href="/de-xuat" className="btn btn-light btn-sm">
+            Đề xuất đăng tài liệu
+          </Link>
+        </div>
+      </PageHead>
       <section className="section" style={{ paddingTop: 0 }}>
         <Suspense>
           <DocsBrowser />

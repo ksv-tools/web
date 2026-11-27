@@ -1403,6 +1403,126 @@ a.tool-card:hover .tool-name {
   font-size: 0.92em;
 }
 
+/* ---------- Biểu mẫu ---------- */
+.form {
+  display: grid;
+  gap: 18px;
+}
+
+.form label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1px solid var(--line-2);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: 2px solid var(--brand);
+  outline-offset: -1px;
+  border-color: transparent;
+}
+
+.form .req {
+  color: var(--brand);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 640px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- Trang đọc văn bản ---------- */
+.doc-view {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.doc-info {
+  position: sticky;
+  top: calc(var(--header) + 24px);
+}
+
+.doc-info .kv {
+  grid-template-columns: 1fr;
+  gap: 2px;
+}
+
+.doc-info .kv dd {
+  text-align: left;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.doc-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.doc-paper {
+  min-height: 60vh;
+}
+
+.doc-paper iframe {
+  display: block;
+  width: 100%;
+  height: calc(100vh - var(--header) - 48px);
+  min-height: 640px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.doc-mobile-hint {
+  display: none;
+  margin-top: 10px;
+  font-size: 13.5px;
+  color: var(--ink-3);
+}
+
+@media (max-width: 900px) {
+  .doc-view {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .doc-info {
+    position: static;
+  }
+  .doc-paper iframe {
+    height: 75vh;
+    min-height: 0;
+  }
+  .doc-mobile-hint {
+    display: block;
+  }
+}
+
 /* ---------- Ảnh trong bài ---------- */
 .photo {
   margin: 24px 0 8px;
