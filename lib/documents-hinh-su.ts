@@ -7,6 +7,19 @@ import type { DocTypeId, Effect, GroupId, IssuerId, LegalDoc } from "./documents
 
 /** Văn bản đã có file toàn văn và nguồn của file. */
 const FILES: Record<string, string> = {
+  "cv-662-2026-tandtc": "Bản scan đăng tại fdvn.vn (có logo FDVN)",
+  "cv-163-2024-tandtc": "Bản scan đăng tại fdvn.vn (có logo FDVN)",
+  "cv-4688-2020-vkstc": "Bản scan đăng tại fdvn.vn (có logo FDVN)",
+  "cv-5442-2020-vkstc": "Bản scan đăng tại fdvn.vn (có logo FDVN)",
+  "cv-4962-2023-vkstc": "Bản scan đăng tại lawmmt.com",
+  "cv-1179-2024-vkstc": "Bản scan đăng tại luatdaihongthuy.com",
+  "cv-89-2020-tandtc": "File do người quản trị cung cấp",
+  "cv-02-2021-tandtc": "Hệ thống văn bản TANDTC (vbpq.toaan.gov.vn)",
+  "nq-03-2024-hdtp": "Hệ thống văn bản TANDTC (vbpq.toaan.gov.vn)",
+  "cv-2160-2023-vkstc": "Trang thông tin VKSND TP. Hồ Chí Minh (vkstphcm.gov.vn)",
+  "nq-04-2024-hdtp": "Tạp chí Tòa án nhân dân (đăng toàn văn)",
+  "nq-03-2025-hdtp": "Tạp chí Tòa án nhân dân (đăng toàn văn)",
+  "nq-02-2024-hdtp": "Tạp chí Tòa án nhân dân (đăng toàn văn)",
   "nq-04-2026-hdtp": "Hệ thống văn bản TANDTC (vbpq.toaan.gov.vn)",
   "cv-250-2026-tandtc": "Tạp chí Tòa án nhân dân (đăng toàn văn)",
   "blhs-hop-nhat": "Cổng Thông tin điện tử Chính phủ",
@@ -40,7 +53,7 @@ const FILES: Record<string, string> = {
 };
 
 /** Văn bản có toàn văn dạng trang HTML (trích từ nguồn đăng toàn văn) thay cho PDF. */
-const HTML_FILES = new Set(["cv-250-2026-tandtc"]);
+const HTML_FILES = new Set(["cv-250-2026-tandtc", "nq-04-2024-hdtp", "nq-03-2025-hdtp", "nq-02-2024-hdtp"]);
 
 type Row = [
   id: string,
@@ -174,11 +187,11 @@ const ROWS: Row[] = [
   ["nq-04-2024-hdtp", "huong-dan", "Nghị quyết HĐTP hướng dẫn tội phạm về khai thác, mua bán, vận chuyển trái phép thủy sản", "04/2024/NQ-HĐTP",
     "Hướng dẫn truy cứu trách nhiệm hình sự đối với hành vi liên quan đến khai thác, mua bán, vận chuyển trái phép thủy sản", "2024-06-12",
     "hdtp", "nghi-quyet", "con", "Hiệu lực 01/8/2024."],
-  ["nq-thoi-hieu-tha-hop-nhat", "huong-dan",
-    "Nghị quyết HĐTP hướng dẫn thời hiệu thi hành án, miễn, giảm, hoãn, tạm đình chỉ chấp hành hình phạt – văn bản hợp nhất",
-    "02/VBHN-TANDTC",
-    "Hợp nhất Nghị quyết 03/2024/NQ-HĐTP về thời hiệu thi hành bản án, miễn chấp hành hình phạt, giảm mức hình phạt, hoãn, tạm đình chỉ chấp hành hình phạt tù, đã sửa đổi bởi NQ 02/2025",
-    "2025", "hdtp", "nghi-quyet", "con", "", "Tòa án nhân dân tối cao"],
+  ["nq-03-2024-hdtp", "huong-dan", "Nghị quyết HĐTP hướng dẫn thời hiệu thi hành án, miễn, giảm, hoãn, tạm đình chỉ chấp hành hình phạt",
+    "03/2024/NQ-HĐTP",
+    "Hướng dẫn áp dụng một số quy định của Bộ luật Hình sự về thời hiệu thi hành bản án, miễn chấp hành hình phạt, giảm mức hình phạt đã tuyên, giảm thời hạn chấp hành hình phạt trong trường hợp đặc biệt, hoãn và tạm đình chỉ chấp hành hình phạt tù",
+    "2024-06-10", "hdtp", "nghi-quyet", "sua-doi",
+    "NQ 02/2025/NQ-HĐTP đã thay một số cụm từ trong ví dụ tại Điều 3, Điều 5 (theo việc tổ chức lại Tòa án). Có văn bản hợp nhất 02/VBHN-TANDTC năm 2025."],
   ["nq-02-2024-hdtp", "huong-dan", "Nghị quyết HĐTP hướng dẫn Điều 313 BLHS (vi phạm quy định phòng cháy, chữa cháy)", "02/2024/NQ-HĐTP",
     "Hướng dẫn áp dụng quy định tại Điều 313 của Bộ luật Hình sự", "2024-05-24", "hdtp", "nghi-quyet", "con", "Hiệu lực 18/6/2024."],
   ["nq-03-2022-hdtp", "huong-dan", "Nghị quyết HĐTP hướng dẫn Điều 304–308 BLHS (vũ khí, vật liệu nổ, công cụ hỗ trợ)", "03/2022/NQ-HĐTP",
@@ -229,6 +242,9 @@ const ROWS: Row[] = [
   ["cv-02-2021-tandtc", "huong-dan", "Công văn TANDTC giải đáp vướng mắc xét xử (8/2021) – có nội dung tội phạm ma túy", "02/TANDTC-PC",
     "Giải đáp một số vướng mắc trong xét xử (có nội dung về tổ chức sử dụng, chứa chấp việc sử dụng trái phép chất ma túy)", "2021-08-02",
     "tandtc", "giai-dap", "con"],
+  ["cv-89-2020-tandtc", "huong-dan", "Công văn TANDTC giải đáp trực tuyến vướng mắc xét xử (6/2020) – có nội dung tội phạm ma túy", "89/TANDTC-PC",
+    "Thông báo kết quả giải đáp trực tuyến một số vướng mắc trong xét xử (hình sự, hành chính, dân sự); phần hình sự có giải đáp về tổ chức sử dụng trái phép chất ma túy",
+    "2020-06-30", "tandtc", "giai-dap", "con"],
   ["cv-196-2018-tandtc", "huong-dan", "Công văn TANDTC về đánh bạc, tổ chức đánh bạc qua mạng", "196/TANDTC-PC",
     "Áp dụng điểm c khoản 2 Điều 321 và điểm c khoản 2 Điều 322 của Bộ luật Hình sự", "2018-09-04", "tandtc", "giai-dap", "con"],
   ["gd-01-2017-tandtc", "huong-dan", "Giải đáp nghiệp vụ TANDTC số 01/2017", "01/2017/GĐ-TANDTC", "Giải đáp một số vấn đề nghiệp vụ",
