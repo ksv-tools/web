@@ -51,10 +51,22 @@ const FILES: Record<string, string> = {
   "ttlt-04-2025-phoi-hop": "Công báo điện tử (congbao.chinhphu.vn)",
   "ttlt-01-2025-giam-dinh": "Công báo điện tử (congbao.chinhphu.vn)",
   "ttlt-03-2018-ghi-am": "Công báo điện tử (congbao.chinhphu.vn)",
+  "nq-06-2019-hdtp": "Cổng thông tin VKSND TP Hải Phòng – bản gốc",
+  "nq-03-2022-hdtp": "CSDL quốc gia về pháp luật (vbpl.vn) – bản gốc",
+  "nq-07-2019-hdtp": "CSDL quốc gia về pháp luật (vbpl.vn) – bản gốc",
+  "nq-08-2021-ubtvqh15": "CSDL quốc gia về pháp luật (vbpl.vn) – bản gốc",
+  "ttlt-01-2017-giam-dinh-tham-nhung": "CSDL quốc gia về pháp luật (vbpl.vn) – bản gốc",
+  "tt-02-2025-vkstc": "Công báo điện tử (congbao.chinhphu.vn)",
+  "nd-115-2017-phap-nhan": "Công báo điện tử (congbao.chinhphu.vn)",
+  "ttlt-02-2017-tra-ho-so": "CSDL quốc gia về pháp luật (vbpl.vn) – toàn văn",
+  "ttlt-01-2017-nguon-tin": "CSDL quốc gia về pháp luật (vbpl.vn) – toàn văn",
+  "ttlt-01-2021-nguon-tin": "CSDL quốc gia về pháp luật (vbpl.vn) – toàn văn",
+  "tt-28-2020-bca": "CSDL quốc gia về pháp luật (vbpl.vn) – toàn văn",
+  "ttlt-03-2026-trich-xuat": "CSDL quốc gia về pháp luật (vbpl.vn) – toàn văn",
 };
 
 /** Văn bản có toàn văn dạng trang HTML (trích từ nguồn đăng toàn văn) thay cho PDF. */
-const HTML_FILES = new Set(["cv-250-2026-tandtc", "nq-04-2024-hdtp", "nq-03-2025-hdtp", "nq-02-2024-hdtp"]);
+const HTML_FILES = new Set(["cv-250-2026-tandtc", "nq-04-2024-hdtp", "nq-03-2025-hdtp", "nq-02-2024-hdtp", "ttlt-02-2017-tra-ho-so", "ttlt-01-2017-nguon-tin", "ttlt-01-2021-nguon-tin", "tt-28-2020-bca", "ttlt-03-2026-trich-xuat"]);
 
 type Row = [
   id: string,
