@@ -5,10 +5,24 @@ import { useState } from "react";
 import { FIELDS } from "@/lib/documents";
 import { GoogleButton, sendSuggestion, useAuth } from "./Auth";
 
+const MAX_FILE = 10 * 1024 * 1024;
+
+/** Đọc tệp thành chuỗi base64 (bỏ phần "data:...;base64,"). */
+function toBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).split(",")[1] ?? "");
+    r.onerror = () => reject(r.error);
+    r.readAsDataURL(file);
+  });
+}
+
 /** Người đọc đề xuất người quản trị đăng một tài liệu. Cần đăng nhập Google để tránh thư rác. */
 export function SuggestForm() {
   const { user, ready } = useAuth();
   const [state, setState] = useState<"idle" | "sending" | "done" | "error">("idle");
+  const [fileError, setFileError] = useState("");
+  const [picked, setPicked] = useState(false);
 
   if (!ready) return <p className="muted">Đang tải…</p>;
   if (!user)
@@ -36,6 +50,12 @@ export function SuggestForm() {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
     const get = (k: string) => String(f.get(k) ?? "").trim();
+    const upload = f.get("file");
+    const hasFile = upload instanceof File && upload.size > 0;
+    if (hasFile && upload.size > MAX_FILE) {
+      setFileError("Tệp lớn hơn 10 MB. Vui lòng nén lại hoặc gửi link.");
+      return;
+    }
     setState("sending");
     const ok = await sendSuggestion(user!, {
       docName: get("docName"),
@@ -43,6 +63,7 @@ export function SuggestForm() {
       field: get("field"),
       link: get("link"),
       message: get("message"),
+      file: hasFile ? { name: upload.name, type: upload.type, data: await toBase64(upload) } : undefined,
     });
     setState(ok ? "done" : "error");
   }
@@ -74,6 +95,32 @@ export function SuggestForm() {
         <span>Link xem tài liệu (nếu có)</span>
         <input name="link" type="url" maxLength={500} placeholder="https://..." />
       </label>
+      <label>
+        <span>Tệp văn bản (nếu không có link)</span>
+        <input
+          name="file"
+          type="file"
+          accept=".pdf,.doc,.docx,.jpg,.jpeg,.png"
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            setPicked(Boolean(file));
+            setFileError(file && file.size > MAX_FILE ? "Tệp lớn hơn 10 MB. Vui lòng nén lại hoặc gửi link." : "");
+          }}
+        />
+        <small className="muted" style={{ fontWeight: 400 }}>
+          PDF, Word hoặc ảnh chụp, tối đa 10 MB. Tệp được gửi thẳng vào email người quản trị, không đăng công khai.
+        </small>
+      </label>
+      {fileError && <div className="alert alert-err">{fileError}</div>}
+      {picked && (
+        <label className="check">
+          <input type="checkbox" name="notSecret" required />
+          <span>
+            Tôi xác nhận tệp <b>không chứa bí mật nhà nước</b> (không có dấu Mật, Tối mật, Tuyệt mật) và không phải hồ sơ
+            vụ án.
+          </span>
+        </label>
+      )}
       <label>
         <span>Ghi chú</span>
         <textarea name="message" rows={4} maxLength={2000} placeholder="Tài liệu dùng vào việc gì, ai ban hành, có file ở đâu…" />

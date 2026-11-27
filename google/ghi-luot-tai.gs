@@ -34,6 +34,18 @@ function doPost(e) {
 
   // Người đọc đề xuất đăng tài liệu: ghi vào trang "Đề xuất" và gửi email báo cho chủ Sheet.
   if (body.type === 'de-xuat') {
+    // Tệp đính kèm (chỉ nhận từ người đăng nhập Google đã xác minh, tối đa 10 MB): gửi kèm email, không lưu lên Drive.
+    let blob = null;
+    if (who.verified && body.file && body.file.data) {
+      try {
+        const bytes = Utilities.base64Decode(String(body.file.data));
+        if (bytes.length <= 10 * 1024 * 1024) {
+          blob = Utilities.newBlob(bytes, String(body.file.type || 'application/octet-stream'), clean_(body.file.name, 150));
+        }
+      } catch (err) {
+        blob = null;
+      }
+    }
     const row = [
       new Date(),
       clean_(who.name),
@@ -44,8 +56,9 @@ function doPost(e) {
       clean_(body.field),
       clean_(body.link, 500),
       clean_(body.message, 2000),
+      blob ? blob.getName() + ' (gửi kèm email)' : '',
     ];
-    sheetOf_(SUGGEST_SHEET, ['Thời gian', 'Họ tên', 'Email', 'Xác minh', 'Tài liệu', 'Số hiệu', 'Lĩnh vực', 'Link', 'Ghi chú']).appendRow(row);
+    sheetOf_(SUGGEST_SHEET, ['Thời gian', 'Họ tên', 'Email', 'Xác minh', 'Tài liệu', 'Số hiệu', 'Lĩnh vực', 'Link', 'Ghi chú', 'Tệp đính kèm']).appendRow(row);
     try {
       MailApp.sendEmail(
         Session.getEffectiveUser().getEmail(),
@@ -56,12 +69,14 @@ function doPost(e) {
           'Số hiệu: ' + (body.number || ''),
           'Lĩnh vực: ' + (body.field || ''),
           'Link: ' + (body.link || ''),
+          'Tệp đính kèm: ' + (blob ? blob.getName() : 'không có'),
           '',
           'Ghi chú:',
           String(body.message || ''),
           '',
           'Xem tất cả đề xuất ở trang "' + SUGGEST_SHEET + '" trong Google Sheet.',
-        ].join('\n')
+        ].join('\n'),
+        blob ? { attachments: [blob] } : {}
       );
     } catch (err) {
       // hết hạn mức gửi thư trong ngày: vẫn có dòng trong Sheet

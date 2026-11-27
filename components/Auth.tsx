@@ -189,7 +189,15 @@ export function logDownload(user: User, tool: string, version: string) {
   }
 }
 
-export type Suggestion = { docName: string; number: string; field: string; link: string; message: string };
+export type Suggestion = {
+  docName: string;
+  number: string;
+  field: string;
+  link: string;
+  message: string;
+  /** Tệp đính kèm, nội dung mã hóa base64. Apps Script gửi kèm email cho người quản trị. */
+  file?: { name: string; type: string; data: string };
+};
 
 /** Gửi đề xuất đăng tài liệu: Apps Script ghi vào trang "Đề xuất" của Google Sheet và gửi email báo người quản trị. */
 export async function sendSuggestion(user: User, s: Suggestion): Promise<boolean> {

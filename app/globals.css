@@ -1439,6 +1439,27 @@ a.tool-card:hover .tool-name {
   border-color: transparent;
 }
 
+.form .check {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  background: var(--warn-soft);
+  color: var(--warn);
+  font-weight: 400;
+}
+
+.form .check input {
+  width: auto;
+  margin-top: 3px;
+}
+
+.form input[type="file"] {
+  padding: 9px;
+  background: var(--bg-2);
+}
+
 .form .req {
   color: var(--brand);
 }
@@ -1576,6 +1597,72 @@ a.tool-card:hover .tool-name {
 .field-tabs a.is-soon:not([aria-current]) {
   color: var(--ink-3);
   font-weight: 400;
+}
+
+.group-tabs {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-2);
+}
+
+.group-tabs-in {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.group-tabs a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1px solid var(--line-2);
+  border-radius: 99px;
+  background: var(--bg);
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.group-tabs a b {
+  min-width: 22px;
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: var(--bg-3);
+  color: var(--ink-3);
+  font-size: 12px;
+  text-align: center;
+}
+
+.group-tabs a:hover {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+.group-tabs a[aria-current="page"] {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: #ffffff;
+}
+
+.group-tabs a[aria-current="page"] b {
+  background: rgb(255 255 255 / 0.22);
+  color: #ffffff;
+}
+
+.docs-layout.no-facets {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "search" "results";
+  max-width: 980px;
+}
+
+.doc-elsewhere {
+  margin: 6px 0 0;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  background: var(--sky-soft);
+  font-size: 14px;
 }
 
 .field-soon {

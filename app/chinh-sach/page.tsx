@@ -27,7 +27,8 @@ export default function PolicyPage() {
             </ul>
             <p>
               Khi bạn gửi đề xuất tài liệu, trang ghi lại họ tên, email và nội dung đề xuất để người quản trị xem xét và
-              liên hệ khi cần.
+              liên hệ khi cần. Tệp bạn đính kèm được gửi thẳng vào email của người quản trị, không lưu trên trang. Không
+              gửi tài liệu chứa bí mật nhà nước hoặc hồ sơ vụ án.
             </p>
             <p>
               Trang <strong>không</strong> nhận mật khẩu Google của bạn, không đọc thư, danh bạ hay tệp trong tài khoản
