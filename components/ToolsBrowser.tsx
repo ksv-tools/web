@@ -18,6 +18,7 @@ export function ToolsView({ area }: { area?: AreaId }) {
     <>
       <PageHead
         title="Công cụ"
+        image="/anh/cong-cu.jpg"
         lead="Công cụ đã sẵn sàng và công cụ đang làm. Công cụ mới được thêm dần theo nhu cầu thực tế của đồng nghiệp."
         crumbs={[{ href: "/cong-cu", label: "Công cụ" }]}
       >

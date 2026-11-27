@@ -9,6 +9,7 @@ export default function PolicyPage() {
     <>
       <PageHead
         title="Chính sách bảo vệ dữ liệu"
+        image="/anh/chinh-sach.jpg"
         lead="Trang thu thập những gì, dùng vào việc gì, và cách yêu cầu xóa."
         crumbs={[{ href: "/chinh-sach", label: "Chính sách bảo vệ dữ liệu" }]}
       />

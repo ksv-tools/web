@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { ToolCard } from "@/components/ToolCard";
 import { SignedOutOnly } from "@/components/UserMenu";
+import { withBase } from "@/lib/config";
 import { FIELDS } from "@/lib/documents";
 import { AREAS, TOOLS } from "@/lib/tools";
 
@@ -9,7 +10,11 @@ export default function Home() {
   const ready = TOOLS.filter((t) => t.status === "ready").length;
   return (
     <>
-      <section className="hero">
+      <section className="hero" style={{ "--hero-img": `url(${withBase("/anh/tru-so-vks-hue.jpg")})` } as React.CSSProperties}>
+        <div className="hero-photo" aria-hidden="true" />
+        <a className="photo-credit" href="https://vkshue.gov.vn" target="_blank" rel="noopener noreferrer">
+          Ảnh: VKSND thành phố Huế (vkshue.gov.vn)
+        </a>
         <div className="wrap hero-in">
           <span className="hero-brand">
             <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

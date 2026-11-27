@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHead } from "@/components/PageHead";
-import { AUTHOR, AUTHOR_UNIT } from "@/lib/config";
+import { AUTHOR, AUTHOR_UNIT, withBase } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Giới thiệu" };
 
@@ -10,6 +10,8 @@ export default function AboutPage() {
     <>
       <PageHead
         title="Giới thiệu"
+        image="/anh/phien-toa-vks-hue.jpg"
+        credit={{ text: "Ảnh: VKSND thành phố Huế (vkshue.gov.vn)", href: "https://vkshue.gov.vn" }}
         lead="Công cụ nhỏ cho những việc lặp đi lặp lại trong công tác kiểm sát."
         crumbs={[{ href: "/gioi-thieu", label: "Giới thiệu" }]}
       />
@@ -31,6 +33,17 @@ export default function AboutPage() {
             <p>
               <strong>{AUTHOR}</strong>, {AUTHOR_UNIT}.
             </p>
+            <figure className="photo">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={withBase("/anh/don-vi.webp")}
+                alt="Cán bộ, Kiểm sát viên Viện kiểm sát nhân dân khu vực 3, tỉnh Ninh Bình trong buổi sinh hoạt chuyên đề"
+                width={1440}
+                height={960}
+                loading="lazy"
+              />
+              <figcaption>Tập thể Viện kiểm sát nhân dân khu vực 3, tỉnh Ninh Bình.</figcaption>
+            </figure>
 
             <h2>Lưu ý</h2>
             <p>
@@ -40,6 +53,13 @@ export default function AboutPage() {
             </p>
             <p>
               Xem thêm <Link href="/chinh-sach" className="link">chính sách bảo vệ dữ liệu</Link>.
+            </p>
+            <p className="muted" style={{ fontSize: 13.5 }}>
+              Ảnh trụ sở và phiên tòa giả định ở trang chủ, trang này: Viện kiểm sát nhân dân thành phố Huế (vkshue.gov.vn). Các ảnh minh họa khác lấy từ{" "}
+              <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">
+                Unsplash
+              </a>{" "}
+              (miễn phí bản quyền). Ảnh tập thể đơn vị do {AUTHOR_UNIT} cung cấp.
             </p>
           </article>
         </div>
