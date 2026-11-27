@@ -19,7 +19,7 @@
  * mã đăng nhập là thật và đúng của web này; = Không khi mã hết hạn hoặc bị làm giả.
  */
 
-const CLIENT_ID = 'DIEN_CLIENT_ID_VAO_DAY.apps.googleusercontent.com';
+const CLIENT_ID = '872161885117-g8k2g3vleuqs2n3e84n4402m01co0gor.apps.googleusercontent.com';
 const SHEET_NAME = 'Lượt tải';
 const SUGGEST_SHEET = 'Đề xuất';
 
