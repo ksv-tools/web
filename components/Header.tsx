@@ -6,6 +6,7 @@ import { UserMenu } from "./UserMenu";
 const ITEMS: NavItem[] = [
   { href: "/", label: "Trang chủ" },
   { href: "/cong-cu", label: "Công cụ" },
+  { href: "/van-ban", label: "Văn bản" },
   { href: "/huong-dan", label: "Hướng dẫn" },
   { href: "/gioi-thieu", label: "Giới thiệu" },
 ];

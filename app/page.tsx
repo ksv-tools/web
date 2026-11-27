@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Icon } from "@/components/Icon";
 import { ToolCard } from "@/components/ToolCard";
 import { SignedOutOnly } from "@/components/UserMenu";
+import { FIELDS } from "@/lib/documents";
 import { AREAS, TOOLS } from "@/lib/tools";
 
 export default function Home() {
@@ -81,6 +82,33 @@ export default function Home() {
       </section>
 
       <section className="section section-alt">
+        <div className="wrap">
+          <div className="section-head">
+            <div>
+              <span className="eyebrow">Tra cứu</span>
+              <h2 className="h-section">Văn bản hướng dẫn</h2>
+              <p className="lead">
+                Luật, thông tư liên tịch, nghị quyết Hội đồng Thẩm phán, giải đáp nghiệp vụ — chia theo lĩnh vực công
+                tác.
+              </p>
+            </div>
+            <Link href="/van-ban" className="link">
+              Tra cứu văn bản <Icon name="arrow" size={18} />
+            </Link>
+          </div>
+          <div className="field-grid">
+            {FIELDS.map((f) => (
+              <Link key={f.id} href={`/van-ban?linh-vuc=${f.id}`} className="field-card">
+                <Icon name="book" size={22} />
+                <b>{f.name}</b>
+                <span>{f.ready ? "Luật, thông tư, hướng dẫn, giải đáp" : "Đang tổng hợp"}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
         <div className="wrap areas">
           <div>
             <span className="eyebrow">Lĩnh vực</span>
@@ -100,7 +128,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section-alt">
         <div className="wrap">
           <div className="section-head">
             <div>

@@ -1,8 +1,15 @@
 import type { IconName } from "@/lib/tools";
 
-type Name = IconName | "arrow" | "down" | "shield" | "download" | "check" | "menu" | "lock" | "user" | "logout" | "monitor";
+type Name = IconName | "arrow" | "down" | "shield" | "download" | "check" | "menu" | "lock" | "user" | "logout" | "monitor" | "search" | "external";
 
 const PATHS: Record<Name, React.ReactNode> = {
+  search: (
+    <>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </>
+  ),
+  external: <path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5" />,
   scissors: (
     <>
       <circle cx="6" cy="6" r="3" />

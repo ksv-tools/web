@@ -9,3 +9,6 @@ out/
 next-env.d.ts
 .vercel
 .claude/
+
+# File duyệt văn bản (chỉ để trên máy, không đưa lên kho công khai)
+danh-sach-van-ban/

@@ -32,6 +32,9 @@ export function Footer() {
           <h3>Thông tin</h3>
           <ul>
             <li>
+              <Link href="/van-ban">Văn bản hướng dẫn</Link>
+            </li>
+            <li>
               <Link href="/huong-dan">Hướng dẫn sử dụng</Link>
             </li>
             <li>
