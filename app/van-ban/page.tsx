@@ -14,7 +14,7 @@ export default function DocsPage() {
     <>
       <PageHead
         title="Văn bản hướng dẫn"
-        image="/anh/van-ban.jpg"
+        image="/anh/don-vi-tuyen-truyen.webp"
         lead="Luật, thông tư liên tịch, nghị quyết Hội đồng Thẩm phán, giải đáp nghiệp vụ của Tòa án, Viện kiểm sát, liên ngành và địa phương — chia theo lĩnh vực để tra cứu nhanh."
         crumbs={[{ href: "/van-ban", label: "Văn bản hướng dẫn" }]}
       />

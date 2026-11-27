@@ -10,7 +10,7 @@ export const metadata: Metadata = { title: "Đăng nhập" };
 export default function LoginPage() {
   return (
     <div className="auth">
-      <section className="auth-side" style={{ "--side-img": `url(${withBase("/anh/dang-nhap.jpg")})` } as React.CSSProperties}>
+      <section className="auth-side" style={{ "--side-img": `url(${withBase("/anh/don-vi-bien-tru-so.webp")})` } as React.CSSProperties}>
         <div>
           <span className="eyebrow" style={{ color: "inherit", opacity: 0.75 }}>
             KSV Tools

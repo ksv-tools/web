@@ -10,8 +10,7 @@ export default function AboutPage() {
     <>
       <PageHead
         title="Giới thiệu"
-        image="/anh/phien-toa-vks-hue.jpg"
-        credit={{ text: "Ảnh: VKSND thành phố Huế (vkshue.gov.vn)", href: "https://vkshue.gov.vn" }}
+        image="/anh/don-vi-ky-ket.webp"
         lead="Công cụ nhỏ cho những việc lặp đi lặp lại trong công tác kiểm sát."
         crumbs={[{ href: "/gioi-thieu", label: "Giới thiệu" }]}
       />
@@ -55,11 +54,11 @@ export default function AboutPage() {
               Xem thêm <Link href="/chinh-sach" className="link">chính sách bảo vệ dữ liệu</Link>.
             </p>
             <p className="muted" style={{ fontSize: 13.5 }}>
-              Ảnh trụ sở và phiên tòa giả định ở trang chủ, trang này: Viện kiểm sát nhân dân thành phố Huế (vkshue.gov.vn). Các ảnh minh họa khác lấy từ{" "}
+              Ảnh ở trang chủ, trang Giới thiệu, Văn bản và Đăng nhập do {AUTHOR_UNIT} cung cấp. Các ảnh minh họa khác lấy từ{" "}
               <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">
                 Unsplash
               </a>{" "}
-              (miễn phí bản quyền). Ảnh tập thể đơn vị do {AUTHOR_UNIT} cung cấp.
+              (miễn phí bản quyền).
             </p>
           </article>
         </div>
