@@ -21,6 +21,7 @@ const FILES: Record<string, string> = {
   "nq-03-2025-hdtp": "Tạp chí Tòa án nhân dân (đăng toàn văn)",
   "nq-02-2024-hdtp": "Tạp chí Tòa án nhân dân (đăng toàn văn)",
   "nq-04-2026-hdtp": "Hệ thống văn bản TANDTC (vbpq.toaan.gov.vn)",
+  "nq-04-2025-hdtp": "Bản chụp văn bản gốc (fdvn.vn)",
   "cv-250-2026-tandtc": "Tạp chí Tòa án nhân dân (đăng toàn văn)",
   "blhs-hop-nhat": "Cổng Thông tin điện tử Chính phủ",
   "bltths-hop-nhat": "Cổng Thông tin điện tử Chính phủ",
