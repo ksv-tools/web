@@ -44,6 +44,7 @@ function metaText(d: LegalDoc): string {
       d.issuerDetail ?? issuerName(d.issuer),
       typeName(d.type),
       d.signers?.join(" "),
+      d.points?.join(" "),
       fieldName(d.field),
       groupName(d.group),
     ]
@@ -81,19 +82,42 @@ export type Hit = {
   score: number;
   /** Các từ khóa đứng gần nhau (trong một đoạn) hoặc cùng nằm trong tên, trích yếu. */
   close: boolean;
+  /** Có đúng cả cụm từ đã gõ. */
+  exact: boolean;
   snippet?: { before: string; match: string; after: string };
 };
 
 const WINDOW = 90;
+const isAlnum = (c: string | undefined) => !!c && /[a-z0-9]/.test(c);
+
+/**
+ * Tìm theo trọn tiếng: phải bắt đầu ở đầu một tiếng (gõ "de" không khớp giữa "đề nghị" → "nghi"…).
+ * Từ ngắn (≤ 3 chữ) còn phải kết thúc ở cuối tiếng; từ dài cho khớp đầu tiếng (đang gõ dở vẫn ra).
+ */
+function find(text: string, w: string, from = 0): number {
+  let at = text.indexOf(w, from);
+  while (at >= 0) {
+    const okStart = !isAlnum(text[at - 1]) || !isAlnum(w[0]);
+    const okEnd = w.length > 3 || !isAlnum(text[at + w.length]) || !isAlnum(w[w.length - 1]);
+    if (okStart && okEnd) return at;
+    at = text.indexOf(w, at + 1);
+  }
+  return -1;
+}
+
+const has = (text: string | undefined, w: string) => !!text && find(text, w) >= 0;
 
 /** Vị trí có đủ mọi từ trong một khoảng ngắn quanh từ dài nhất; -1 nếu không có. */
 function near(text: string, ws: string[]): number {
   const [key, ...rest] = [...ws].sort((x, y) => y.length - x.length);
-  let at = text.indexOf(key!);
+  // Từ ngắn (tu, che, xe…) gặp ở khắp nơi: khi đó chỉ chấp nhận đứng sát nhau.
+  const win = key!.length <= 3 ? 14 : key!.length <= 5 ? 40 : WINDOW;
+  let at = find(text, key!);
   for (let n = 0; at >= 0 && n < 400; n++) {
-    const win = text.slice(Math.max(0, at - WINDOW), at + key!.length + WINDOW);
-    if (rest.every((w) => win.includes(w))) return at;
-    at = text.indexOf(key!, at + 1);
+    const s = Math.max(0, at - win);
+    const around = text.slice(s, at + key!.length + win);
+    if (rest.every((w) => has(around, w))) return at;
+    at = find(text, key!, at + 1);
   }
   return -1;
 }
@@ -109,44 +133,48 @@ function cut(raw: string, at: number, len: number): Hit["snippet"] {
 }
 
 /**
- * Mọi từ phải có mặt. Nếu có văn bản chứa các từ đứng gần nhau (hoặc cùng trong tên, trích yếu) thì chỉ hiện
- * những văn bản đó, tránh lẫn kết quả có từ rải rác; khớp ở tên, số hiệu được xếp trước.
+ * Mọi từ phải có mặt (theo trọn tiếng). Văn bản có đúng cụm từ hoặc các từ đứng gần nhau được giữ lại và xếp trước;
+ * chỉ khi không có văn bản nào như vậy mới hiện các văn bản có từ rải rác. Khớp ở tên, số hiệu xếp trước nữa.
  */
 export function search(q: string, body: Map<string, Body> | null): Hit[] {
   const ws = words(q);
   if (!ws.length) return [];
   const phrase = ws.join(" ");
+  const longest = [...ws].sort((x, y) => y.length - x.length)[0]!;
   const hits: Hit[] = [];
   for (const d of DOCUMENTS) {
     const meta = META.get(d.id)!;
     const b = body?.get(d.id);
-    if (!ws.every((w) => meta.includes(w) || b?.folded.includes(w))) continue;
-    const inMeta = ws.every((w) => meta.includes(w));
-    let score = ws.filter((w) => meta.includes(w)).length * 10 + (inMeta ? 30 : 0);
-    if (fold(d.name).includes(phrase) || fold(d.number).includes(phrase)) score += 60;
-    let close = inMeta;
+    if (!ws.every((w) => has(meta, w) || has(b?.folded, w))) continue;
+    const inMeta = ws.every((w) => has(meta, w));
+    let score = ws.filter((w) => has(meta, w)).length * 10 + (inMeta ? 30 : 0);
+    if (has(fold(d.name), phrase) || has(fold(d.number), phrase)) score += 60;
+    let close = inMeta && (ws.length === 1 || near(meta, ws) >= 0);
+    let exact = has(meta, phrase);
     let snippet: Hit["snippet"];
     if (b) {
-      let at = b.folded.indexOf(phrase);
+      let at = find(b.folded, phrase);
       let len = phrase.length;
-      if (at < 0 && ws.length > 1) {
+      if (at >= 0) exact = true;
+      else if (ws.length > 1) {
         at = near(b.folded, ws);
-        len = at >= 0 ? [...ws].sort((x, y) => y.length - x.length)[0]!.length : 0;
+        len = longest.length;
       }
       if (at >= 0) {
         close = true;
-        score += 20 + Math.min(15, b.folded.split(ws[0]!).length - 1);
+        score += 20;
         snippet = cut(b.raw, at, len);
       } else {
-        const w = [...ws].sort((x, y) => y.length - x.length)[0]!;
-        const p = b.folded.indexOf(w);
-        if (p >= 0) snippet = cut(b.raw, p, w.length);
+        const p = find(b.folded, longest);
+        if (p >= 0) snippet = cut(b.raw, p, longest.length);
       }
     }
-    hits.push({ d, score, close, snippet });
+    if (ws.length === 1) close = true;
+    if (exact) score += 80;
+    hits.push({ d, score, close, exact, snippet });
   }
-  const closeHits = hits.filter((h) => h.close);
-  return (closeHits.length ? closeHits : hits).sort(
+  const good = hits.filter((h) => h.exact || h.close);
+  return (good.length ? good : hits).sort(
     (a, b) => b.score - a.score || b.d.date.localeCompare(a.d.date),
   );
 }

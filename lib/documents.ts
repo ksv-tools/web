@@ -9,6 +9,7 @@
  */
 
 import { RELATED_CLUSTERS, SIGNERS } from "./doc-extra";
+import { POINTS } from "./doc-points";
 import { HINH_SU, THA_HINH_SU } from "./documents-hinh-su";
 
 /** Sáu lĩnh vực của mục Văn bản. `ready: false` thì hiện "Đang xây dựng". */
@@ -115,6 +116,8 @@ export type LegalDoc = {
   signers?: string[];
   /** Id các văn bản liên quan (cùng cụm vấn đề trong lib/doc-extra.ts). */
   related?: string[];
+  /** Nội dung chính: các vấn đề văn bản đề cập (lib/doc-points.ts). */
+  points?: string[];
 };
 
 /**
@@ -123,7 +126,7 @@ export type LegalDoc = {
  */
 export const DOCUMENTS: LegalDoc[] = [...HINH_SU, ...THA_HINH_SU].map((d) => {
   const related = [...new Set(RELATED_CLUSTERS.filter((c) => c.ids.includes(d.id)).flatMap((c) => c.ids))].filter((x) => x !== d.id);
-  return { ...d, signers: SIGNERS[d.id], related: related.length ? related : undefined };
+  return { ...d, signers: SIGNERS[d.id], related: related.length ? related : undefined, points: POINTS[d.id] };
 });
 
 export function groupName(id: GroupId): string {

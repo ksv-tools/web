@@ -405,6 +405,19 @@ function DocRow({
         <Link className="vb-title" href={docHref(d)}>
           {d.name}
         </Link>
+        <p className="vb-meta">
+          <span className="vb-type">{typeName(d.type)}</span>
+          <span>{d.number}</span>
+          <span>{d.date.length > 4 ? fmtDate(d.date) : `Năm ${d.date}`}</span>
+          <span>{d.issuerDetail ?? issuerName(d.issuer)}</span>
+          {d.signers && <span>Ký: {d.signers.join(", ")}</span>}
+          {showPlace && (
+            <span>
+              {fieldName(d.field)} · {groupName(d.group)}
+            </span>
+          )}
+          {d.effect && <span className={`vb-effect is-${d.effect}`}>{EFFECT_LABEL[d.effect].text}</span>}
+        </p>
         {d.title !== d.name && <p className="vb-sub">{d.title}</p>}
         {hit?.snippet && (
           <p className="vb-snippet">
@@ -454,42 +467,31 @@ function DocRow({
         )}
       </div>
 
-      <div className="vb-box">
-        <div className="vb-box-head">{typeName(d.type)}</div>
-        <dl>
-          <dt>Số hiệu</dt>
-          <dd>{d.number}</dd>
-          <dt>{d.date.length > 4 ? "Ban hành" : "Năm"}</dt>
-          <dd>{fmtDate(d.date)}</dd>
-          <dt>Cơ quan</dt>
-          <dd>{d.issuerDetail ?? issuerName(d.issuer)}</dd>
-          {d.signers && (
-            <>
-              <dt>Người ký</dt>
-              <dd>{d.signers.join(", ")}</dd>
-            </>
-          )}
-          {showPlace && (
-            <>
-              <dt>Mục</dt>
-              <dd>
-                {fieldName(d.field)} · {groupName(d.group)}
-              </dd>
-            </>
-          )}
-          {d.effect && (
-            <>
-              <dt>Hiệu lực</dt>
-              <dd>
-                <span className={`vb-effect is-${d.effect}`}>
-                  {EFFECT_LABEL[d.effect].text}
-                </span>
-              </dd>
-            </>
-          )}
-        </dl>
-      </div>
+      <PointsBox d={d} />
     </li>
+  );
+}
+
+/** Ô "Nội dung chính": các vấn đề văn bản đề cập; hiện 4 ý đầu, bấm để xem hết. */
+function PointsBox({ d }: { d: LegalDoc }) {
+  const [all, setAll] = useState(false);
+  const pts = d.points ?? [];
+  if (!pts.length) return <div className="vb-box is-empty" />;
+  const shown = all ? pts : pts.slice(0, 4);
+  return (
+    <div className="vb-box">
+      <div className="vb-box-head">Nội dung chính</div>
+      <ul>
+        {shown.map((p) => (
+          <li key={p}>{p}</li>
+        ))}
+      </ul>
+      {pts.length > 4 && (
+        <button type="button" className="vb-box-more" onClick={() => setAll((v) => !v)}>
+          {all ? "Thu gọn" : `+${pts.length - 4} vấn đề khác`}
+        </button>
+      )}
+    </div>
   );
 }
 

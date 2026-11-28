@@ -87,7 +87,7 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-body), Roboto, Arial, sans-serif;
-  font-size: 15.5px;
+  font-size: 14.5px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
@@ -2198,10 +2198,10 @@ a.tool-card:hover .tool-name {
 
 .vb-fields-in a {
   flex: none;
-  padding: 15px 20px;
+  padding: 13px 18px;
   color: rgb(255 255 255 / 0.82);
   font-weight: 500;
-  font-size: 15.5px;
+  font-size: 14.5px;
   border-bottom: 3px solid transparent;
   white-space: nowrap;
 }
@@ -2243,14 +2243,14 @@ a.tool-card:hover .tool-name {
 .vb-search input {
   flex: 1;
   min-width: 0;
-  height: 50px;
+  height: 46px;
   padding: 0 16px;
   border: 1.5px solid var(--line-2);
   border-radius: 8px;
   background: var(--bg);
   color: var(--ink);
   font: inherit;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .vb-search input:focus {
@@ -2287,10 +2287,10 @@ a.tool-card:hover .tool-name {
 
 .vb-card-head {
   margin: 0;
-  padding: 12px 16px;
+  padding: 10px 16px;
   background: var(--navy);
   color: #ffffff;
-  font-size: 14.5px;
+  font-size: 13.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2329,7 +2329,7 @@ a.tool-card:hover .tool-name {
   color: var(--ink);
   text-align: left;
   font: inherit;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .vb-groups span,
@@ -2389,7 +2389,7 @@ a.tool-card:hover .tool-name {
 }
 
 .vb-main-head h2 {
-  font-size: 17px;
+  font-size: 15px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -2419,9 +2419,9 @@ a.tool-card:hover .tool-name {
 
 .vb-item {
   display: grid;
-  grid-template-columns: 44px minmax(0, 1fr) 280px;
+  grid-template-columns: 38px minmax(0, 1fr) 290px;
   gap: 16px;
-  padding: 20px 18px;
+  padding: 16px 18px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -2435,7 +2435,7 @@ a.tool-card:hover .tool-name {
 
 .vb-no {
   font-family: var(--font-heading), var(--font-body), Arial, sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--sky-strong);
   line-height: 1.2;
@@ -2449,7 +2449,7 @@ a.tool-card:hover .tool-name {
 
 .vb-title {
   font-family: var(--font-heading), var(--font-body), Arial, sans-serif;
-  font-size: 17px;
+  font-size: 15.5px;
   font-weight: 700;
   line-height: 1.4;
   color: var(--navy);
@@ -2462,16 +2462,16 @@ a.tool-card:hover .tool-name {
 
 .vb-sub {
   color: var(--ink-2);
-  font-size: 14.5px;
+  font-size: 13.5px;
 }
 
 .vb-note {
-  font-size: 13.5px;
+  font-size: 12.5px;
   color: var(--warn);
 }
 
 .vb-snippet {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--ink-2);
   background: var(--bg-2);
   border-left: 3px solid var(--gold);
@@ -2489,9 +2489,9 @@ a.tool-card:hover .tool-name {
 .vb-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 18px;
-  margin-top: 4px;
-  font-size: 14px;
+  gap: 4px 16px;
+  margin-top: 2px;
+  font-size: 13px;
 }
 
 .vb-actions a,
@@ -2504,7 +2504,7 @@ a.tool-card:hover .tool-name {
   background: none;
   color: var(--sky-strong);
   font: inherit;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .vb-actions a:hover,
@@ -2550,40 +2550,78 @@ a.tool-card:hover .tool-name {
   border-radius: 8px;
   overflow: hidden;
   align-self: start;
-  font-size: 13.5px;
+  font-size: 12.5px;
   background: var(--bg);
 }
 
 .vb-box-head {
-  padding: 8px 12px;
+  padding: 6px 12px;
   background: var(--sky-soft);
   color: var(--navy);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 12.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-.vb-box dl {
+.vb-box ul {
+  margin: 0;
+  padding: 8px 12px 8px 28px;
   display: grid;
-  grid-template-columns: 78px minmax(0, 1fr);
-  margin: 0;
-}
-
-.vb-box dt,
-.vb-box dd {
-  margin: 0;
-  padding: 6px 12px;
-  border-top: 1px solid var(--line);
-}
-
-.vb-box dt {
-  color: var(--ink-3);
-  padding-right: 0;
-}
-
-.vb-box dd {
+  gap: 5px;
   color: var(--ink);
-  font-weight: 500;
-  overflow-wrap: anywhere;
+  line-height: 1.45;
+}
+
+.vb-box li::marker {
+  color: var(--sky-strong);
+}
+
+.vb-box.is-empty {
+  border: 0;
+}
+
+.vb-box-more {
+  display: block;
+  width: 100%;
+  padding: 6px 12px 8px;
+  border: 0;
+  border-top: 1px dashed var(--line);
+  background: none;
+  color: var(--sky-strong);
+  font: inherit;
+  font-size: 12.5px;
+  text-align: left;
+}
+
+.vb-box-more:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+/* Dòng thông tin gọn dưới tên văn bản */
+.vb-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 0;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+.vb-meta > span:not(:last-child)::after {
+  content: "·";
+  margin: 0 7px;
+  color: var(--line-2);
+}
+
+.vb-meta .vb-type {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.vb-meta .vb-effect::after {
+  content: none;
 }
 
 .vb-effect {
@@ -2633,8 +2671,8 @@ a.tool-card:hover .tool-name {
   margin: 0;
   padding: 10px 16px 12px 34px;
   display: grid;
-  gap: 10px;
-  font-size: 14px;
+  gap: 9px;
+  font-size: 13px;
 }
 
 .vb-latest li::marker {
