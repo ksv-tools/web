@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { type Release, downloadUrl, formatSize, latestRelease } from "@/lib/release";
-import { GoogleButton, logDownload, useAuth } from "./Auth";
+import Link from "next/link";
+import { logDownload, useAuth } from "./Auth";
 import { Icon } from "./Icon";
 
 /**
@@ -10,7 +11,7 @@ import { Icon } from "./Icon";
  * `initial` là thông tin bản cài lúc dựng web; trình duyệt lấy lại bản mới nhất khi mở trang.
  */
 export function DownloadPanel({ slug, initial }: { slug: string; initial: Release | null }) {
-  const { user, ready, signOut } = useAuth();
+  const { user, ready, approved, signOut } = useAuth();
   const [release, setRelease] = useState(initial);
   const url = downloadUrl(slug);
 
@@ -28,9 +29,22 @@ export function DownloadPanel({ slug, initial }: { slug: string; initial: Releas
   } else if (!user) {
     action = (
       <>
-        <GoogleButton width={280} />
-        <p className="panel-msg">Đăng nhập bằng tài khoản Google để tải app.</p>
+        <Link href={`/dang-nhap?next=/cong-cu/${slug}`} className="btn btn-primary">
+          <Icon name="lock" size={18} /> Đăng nhập để tải
+        </Link>
+        <p className="panel-msg">
+          Cần tài khoản đã được duyệt.{" "}
+          <Link href={`/dang-nhap?tab=dang-ky&next=/cong-cu/${slug}`} className="link">
+            Tạo tài khoản
+          </Link>
+        </p>
       </>
+    );
+  } else if (!approved) {
+    action = (
+      <p className="panel-msg">
+        Tài khoản <b>{user.email}</b> đang chờ duyệt. Được duyệt xong sẽ tải được app.
+      </p>
     );
   } else {
     action = (

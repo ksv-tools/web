@@ -18,8 +18,10 @@ export default function PolicyPage() {
           <article className="prose" style={{ maxWidth: 760 }}>
             <h2>Dữ liệu được lưu</h2>
             <p>
-              Khi bạn đăng nhập bằng Google, họ tên, email và ảnh đại diện do Google cung cấp chỉ được giữ trên trình duyệt
-              của bạn (30 ngày, hoặc đến khi bấm Đăng xuất). Mỗi khi bạn tải một công cụ, trang ghi lại:
+              Khi bạn tạo tài khoản, trang lưu họ tên, đơn vị, chức vụ, số điện thoại (nếu điền), email và trạng thái duyệt.
+              Mật khẩu chỉ lưu dạng mã băm một chiều: không ai đọc lại được, kể cả người quản trị. Khi đăng nhập bằng Google,
+              trang nhận họ tên và email do Google xác nhận. Trình duyệt của bạn giữ một vé đăng nhập đến khi bấm Đăng xuất.
+              Mỗi khi bạn tải một công cụ, trang ghi lại:
             </p>
             <ul>
               <li>họ tên và địa chỉ email;</li>
@@ -45,13 +47,13 @@ export default function PolicyPage() {
 
             <h2>Nơi lưu và người được xem</h2>
             <p>
-              Lượt tải được ghi vào một bảng tính Google Sheets riêng của người quản trị trang ({AUTHOR}, {AUTHOR_UNIT}).
-              Chỉ người quản trị xem được.
+              Tài khoản, lượt tải và đề xuất được ghi vào một bảng tính Google Sheets riêng của người quản trị trang ({AUTHOR},{" "}
+              {AUTHOR_UNIT}). Chỉ người quản trị xem được.
             </p>
 
             <h2>Yêu cầu xóa dữ liệu</h2>
             <p>
-              Bạn có thể yêu cầu xóa toàn bộ lượt tải gắn với email của mình bất cứ lúc nào bằng cách liên hệ người quản
+              Bạn có thể yêu cầu xóa tài khoản và toàn bộ lượt tải gắn với email của mình bất cứ lúc nào bằng cách liên hệ người quản
               trị trang. Dữ liệu được xóa trong vòng 7 ngày kể từ khi nhận yêu cầu. Bạn cũng có thể gỡ quyền truy cập của
               trang trong phần cài đặt bảo mật của tài khoản Google.
             </p>

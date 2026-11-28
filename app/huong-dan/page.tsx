@@ -18,8 +18,10 @@ export default function GuidePage() {
           <article className="prose" style={{ maxWidth: 760 }}>
             <h2>1. Đăng nhập</h2>
             <p>
-              Vào <Link href="/dang-nhap" className="link">Đăng nhập</Link>, chọn <em>Tiếp tục với Google</em>. Google mở
-              một cửa sổ nhỏ để bạn chọn tài khoản. Không cần tạo mật khẩu mới. Trình duyệt nhớ đăng nhập trong 30 ngày.
+              Văn bản công khai xem tự do. Muốn tải công cụ và xem văn bản nội bộ, vào{" "}
+              <Link href="/dang-nhap?tab=dang-ky" className="link">Tạo tài khoản</Link>: điền họ tên, đơn vị, email, mật khẩu,
+              hoặc bấm <em>Tiếp tục với Google</em>. Người quản trị duyệt xong sẽ có email báo; từ đó đăng nhập dùng không
+              hết hạn trên trình duyệt đó. Quên mật khẩu thì bấm <em>Quên mật khẩu?</em> để nhận mã qua email.
             </p>
 
             <h2>2. Dùng công cụ</h2>

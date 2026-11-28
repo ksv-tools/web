@@ -18,10 +18,13 @@ export default function LoginPage() {
           <h2>Tiện ích số cho Kiểm sát viên</h2>
           <ul>
             <li>
-              <Icon name="check" size={20} /> Đăng nhập bằng tài khoản Google sẵn có, không cần mật khẩu mới
+              <Icon name="check" size={20} /> Tạo tài khoản bằng email, hoặc dùng tài khoản Google sẵn có
             </li>
             <li>
-              <Icon name="check" size={20} /> Đăng nhập một lần, dùng trong 30 ngày
+              <Icon name="check" size={20} /> Tài khoản được duyệt: tải công cụ, xem văn bản nội bộ
+            </li>
+            <li>
+              <Icon name="check" size={20} /> Văn bản công khai xem tự do, không cần đăng nhập
             </li>
             <li>
               <Icon name="check" size={20} /> Hồ sơ xử lý trên máy của bạn, không đưa lên trang
@@ -33,16 +36,15 @@ export default function LoginPage() {
 
       <section className="auth-main">
         <div className="auth-box">
-          <h1>Đăng nhập</h1>
-          <p>Dùng tài khoản Google để tiếp tục.</p>
+          <h1>Tài khoản</h1>
 
           <Suspense>
             <LoginBox />
           </Suspense>
 
           <p className="auth-foot">
-            Khi đăng nhập, bạn đồng ý với <Link href="/chinh-sach">chính sách bảo vệ dữ liệu</Link>. Mỗi lượt tải công cụ được ghi
-            lại kèm họ tên và email của bạn.
+            Khi đăng ký, đăng nhập, bạn đồng ý với <Link href="/chinh-sach">chính sách bảo vệ dữ liệu</Link>. Mật khẩu chỉ
+            lưu dạng mã băm, người quản trị cũng không xem được. Mỗi lượt tải công cụ được ghi lại kèm họ tên, email.
           </p>
         </div>
       </section>

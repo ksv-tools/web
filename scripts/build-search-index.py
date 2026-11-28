@@ -16,6 +16,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(ROOT, "public", "van-ban-goc")
 EXTRA = os.path.join(ROOT, "data", "noi-dung-bo-sung")
 OUT = os.path.join(ROOT, "public", "tim-kiem", "noi-dung.json")
+# Văn bản nội bộ không đưa nội dung vào chỉ mục công khai.
+INTERNAL = set(json.load(open(os.path.join(ROOT, "data", "van-ban-noi-bo.json"), encoding="utf-8")))
 MAX_CHARS = 250_000  # mỗi văn bản, đủ cho cả quy chế dài
 
 
@@ -39,6 +41,8 @@ def html_text(path: str) -> str:
 index = {}
 for name in sorted(os.listdir(SRC)):
     doc_id, ext = os.path.splitext(name)
+    if doc_id in INTERNAL:
+        continue
     path = os.path.join(SRC, name)
     text = pdf_text(path) if ext == ".pdf" else html_text(path) if ext == ".html" else ""
     text = clean(text)

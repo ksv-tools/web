@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import { withBase } from "@/lib/config";
 import { EFFECT_LABEL, GROUPS, docFile, docHref, fieldName, fmtDate, getDoc, issuerName, typeName } from "@/lib/documents";
 import { Icon } from "./Icon";
+import { InternalViewer } from "./InternalDoc";
 import { PageHead } from "./PageHead";
 
 /** Trang đọc toàn văn một văn bản ngay trên web (file PDF trong public/van-ban-goc/). */
@@ -89,7 +90,7 @@ export function DocViewer() {
                 </ul>
               </div>
             )}
-            {d.hasFile && (
+            {d.hasFile && !d.internal && (
               <div className="doc-actions">
                 <a href={file} target="_blank" rel="noopener" className="btn btn-primary btn-sm">
                   Mở toàn màn hình
@@ -102,7 +103,9 @@ export function DocViewer() {
           </aside>
 
           <div className="doc-paper">
-            {d.hasFile ? (
+            {d.internal ? (
+              <InternalViewer d={d} />
+            ) : d.hasFile ? (
               <>
                 <iframe src={d.html ? file : `${file}#view=FitH`} title={`Toàn văn ${d.number}`} />
                 <p className="doc-mobile-hint">

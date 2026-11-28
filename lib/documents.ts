@@ -10,6 +10,7 @@
 
 import { RELATED_CLUSTERS, SIGNERS } from "./doc-extra";
 import { POINTS } from "./doc-points";
+import INTERNAL_IDS from "../data/van-ban-noi-bo.json";
 import { HINH_SU, THA_HINH_SU } from "./documents-hinh-su";
 
 /** Sáu lĩnh vực của mục Văn bản. `ready: false` thì hiện "Đang xây dựng". */
@@ -118,6 +119,11 @@ export type LegalDoc = {
   related?: string[];
   /** Nội dung chính: các vấn đề văn bản đề cập (lib/doc-points.ts). */
   points?: string[];
+  /**
+   * Văn bản nội bộ (data/van-ban-noi-bo.json): không để file trên web công khai; tài khoản đã duyệt mới xem, tải được,
+   * file lấy từ máy chủ Apps Script (người quản trị tải lên ở trang /quan-tri).
+   */
+  internal?: boolean;
 };
 
 /**
@@ -126,7 +132,13 @@ export type LegalDoc = {
  */
 export const DOCUMENTS: LegalDoc[] = [...HINH_SU, ...THA_HINH_SU].map((d) => {
   const related = [...new Set(RELATED_CLUSTERS.filter((c) => c.ids.includes(d.id)).flatMap((c) => c.ids))].filter((x) => x !== d.id);
-  return { ...d, signers: SIGNERS[d.id], related: related.length ? related : undefined, points: POINTS[d.id] };
+  return {
+    ...d,
+    signers: SIGNERS[d.id],
+    related: related.length ? related : undefined,
+    points: POINTS[d.id],
+    internal: (INTERNAL_IDS as string[]).includes(d.id),
+  };
 });
 
 export function groupName(id: GroupId): string {

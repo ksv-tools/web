@@ -28,6 +28,7 @@ import {
 } from "@/lib/documents";
 import { useSavedDocs } from "@/lib/saved-docs";
 import { Icon } from "./Icon";
+import { InternalDownload } from "./InternalDoc";
 
 const DEFAULT_GROUP: GroupId = "luat";
 const SAVED = "da-luu";
@@ -407,6 +408,11 @@ function DocRow({
         </Link>
         <p className="vb-meta">
           <span className="vb-type">{typeName(d.type)}</span>
+          {d.internal && (
+            <span className="vb-internal">
+              <Icon name="lock" size={12} /> Nội bộ
+            </span>
+          )}
           <span>{d.number}</span>
           <span>{d.date.length > 4 ? fmtDate(d.date) : `Năm ${d.date}`}</span>
           <span>{d.issuerDetail ?? issuerName(d.issuer)}</span>
@@ -429,10 +435,14 @@ function DocRow({
         {d.note && <p className="vb-note">{d.note}</p>}
         <div className="vb-actions">
           <Link href={docHref(d)}>Xem toàn văn</Link>
-          {d.hasFile && (
-            <a href={withBase(docFile(d))} download>
-              <Icon name="download" size={15} /> Tải về
-            </a>
+          {d.internal ? (
+            <InternalDownload d={d} />
+          ) : (
+            d.hasFile && (
+              <a href={withBase(docFile(d))} download>
+                <Icon name="download" size={15} /> Tải về
+              </a>
+            )
           )}
           {related.length > 0 && (
             <button
