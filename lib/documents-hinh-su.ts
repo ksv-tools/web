@@ -89,13 +89,20 @@ const FILES: Record<string, string> = {
   "nq-an-treo-hop-nhat": "Bản dựng lại toàn văn trên web (văn bản không đăng Công báo, vbpl.vn)",
   "gd-01-2017-tandtc": "Bản dựng lại toàn văn trên web (văn bản không đăng Công báo, vbpl.vn)",
   "hd-14-2022-lua-dao-mang": "Bản dựng lại toàn văn trên web (văn bản không đăng Công báo, vbpl.vn)",
-  "qd-06-vkstc-quy-che": "Bản dựng lại toàn văn trên web (văn bản không đăng Công báo, vbpl.vn)",
+  "qd-06-vkstc-quy-che": "Bản gốc do người quản trị cung cấp",
   "ttlt-01-2025-vat-chung": "Bản dựng lại toàn văn trên web (văn bản không đăng Công báo, vbpl.vn)",
   "ttlt-03-2025-tham-quyen": "Bản dựng lại toàn văn trên web (văn bản không đăng Công báo, vbpl.vn)",
+  "qd-69-2026-vkstc-thinh-thi": "Bản gốc do người quản trị cung cấp",
+  "cv-2189-2026-vkstc": "Bản gốc do người quản trị cung cấp",
+  "hd-21-2026-vkstc-trinh-chieu": "Bản gốc do người quản trị cung cấp",
+  "kl-ln-ninh-binh-q3-2026": "Bản gốc do người quản trị cung cấp",
+  "tb-01-2026-ln-ninh-binh": "Bản gốc do người quản trị cung cấp",
+  "kl-ln-ninh-binh-q4-2025": "Bản gốc do người quản trị cung cấp",
+  "tb-149-2025-rkn-ninh-binh": "Bản gốc do người quản trị cung cấp",
 };
 
 /** Văn bản có toàn văn dạng trang HTML (trích từ nguồn đăng toàn văn) thay cho PDF. */
-const HTML_FILES = new Set(["cv-250-2026-tandtc", "nq-04-2024-hdtp", "nq-03-2025-hdtp", "nq-02-2024-hdtp", "ttlt-02-2017-tra-ho-so", "ttlt-01-2017-nguon-tin", "ttlt-01-2021-nguon-tin", "tt-28-2020-bca", "ttlt-03-2026-trich-xuat", "nd-170-2026-thahs", "nd-213-2026-tam-giu", "tt-57-2026-bca", "cv-174-2023-tandtc", "cv-196-2018-tandtc", "cv-01-2026-tandtc", "cv-5887-2019-vkstc", "cv-5024-2018-vkstc", "nq-an-treo-hop-nhat", "gd-01-2017-tandtc", "hd-14-2022-lua-dao-mang", "qd-06-vkstc-quy-che", "ttlt-01-2025-vat-chung", "ttlt-03-2025-tham-quyen"]);
+const HTML_FILES = new Set(["cv-250-2026-tandtc", "nq-04-2024-hdtp", "nq-03-2025-hdtp", "nq-02-2024-hdtp", "ttlt-02-2017-tra-ho-so", "ttlt-01-2017-nguon-tin", "ttlt-01-2021-nguon-tin", "tt-28-2020-bca", "ttlt-03-2026-trich-xuat", "nd-170-2026-thahs", "nd-213-2026-tam-giu", "tt-57-2026-bca", "cv-174-2023-tandtc", "cv-196-2018-tandtc", "cv-01-2026-tandtc", "cv-5887-2019-vkstc", "cv-5024-2018-vkstc", "nq-an-treo-hop-nhat", "gd-01-2017-tandtc", "hd-14-2022-lua-dao-mang", "ttlt-01-2025-vat-chung", "ttlt-03-2025-tham-quyen"]);
 
 type Row = [
   id: string,
@@ -224,6 +231,10 @@ const ROWS: Row[] = [
   ["tt-75-2024-bca", "thong-tu", "Thông tư hướng dẫn Luật vũ khí – danh mục dao có tính sát thương cao (2024)", "75/2024/TT-BCA",
     "Quy định chi tiết một số điều của Luật Quản lý, sử dụng vũ khí, vật liệu nổ và công cụ hỗ trợ; Phụ lục 05: danh mục dao có tính sát thương cao",
     "2024-11-15", "bo-nganh", "thong-tu", "con", "Hiệu lực 01/01/2025.", "Bộ Công an"],
+  ["qd-69-2026-vkstc-thinh-thi", "thong-tu", "Quy định về hướng dẫn, giải đáp vướng mắc và thỉnh thị, trả lời thỉnh thị trong ngành Kiểm sát (2026)",
+    "69/QĐ-VKSTC",
+    "Quy định về công tác hướng dẫn, giải đáp vướng mắc về pháp luật, nghiệp vụ; báo cáo thỉnh thị, trả lời thỉnh thị trong ngành Kiểm sát nhân dân",
+    "2026-03-30", "vksndtc", "quy-che", "con", "Thay Quyết định 599/QĐ-VKSTC năm 2019."],
   ["qd-06-vkstc-quy-che", "thong-tu", "Quy chế thực hành quyền công tố, kiểm sát khởi tố, điều tra, truy tố (2026)", "06/QĐ-VKSTC",
     "Quy chế công tác thực hành quyền công tố, kiểm sát việc tiếp nhận, giải quyết nguồn tin về tội phạm, khởi tố, điều tra, truy tố", "2026",
     "vksndtc", "quy-che", "con", "Thay Quyết định 111/QĐ-VKSTC năm 2020; kèm 18 biểu mẫu."],
@@ -270,6 +281,13 @@ const ROWS: Row[] = [
   ["nq-04-2026-hdtp", "huong-dan", "Nghị quyết HĐTP hướng dẫn cơ chế đặc thù khi xét xử vi phạm pháp luật đất đai", "04/2026/NQ-HĐTP",
     "Hướng dẫn áp dụng cơ chế, chính sách đặc thù thuộc thẩm quyền của Tòa án khi giải quyết, xét xử vi phạm pháp luật về đất đai",
     "2026-08-18", "hdtp", "nghi-quyet", "con", "Hiệu lực 15/10/2026; có nội dung về truy cứu trách nhiệm hình sự."],
+  ["cv-2189-2026-vkstc", "huong-dan", "Công văn VKSNDTC giải đáp: không thay tạm giữ bằng cấm đi khỏi nơi cư trú, hủy bỏ tạm giữ khi khởi tố bị can (11/2026)",
+    "2189/C2",
+    "Phúc đáp vướng mắc về Nền tảng Quản lý án hình sự: trường hợp đang tạm giữ, gia hạn tạm giữ rồi khởi tố bị can, áp dụng cấm đi khỏi nơi cư trú",
+    "2026-11-11", "vksndtc", "giai-dap", "con", "", "Cục Thống kê tội phạm và chuyển đổi số – VKSNDTC"],
+  ["hd-21-2026-vkstc-trinh-chieu", "huong-dan", "Hướng dẫn tạm thời của VKSNDTC về trình chiếu tài liệu, chứng cứ tại phiên tòa hình sự (2026)",
+    "21/HD-VKSTC", "Hướng dẫn tạm thời về trình chiếu tài liệu, chứng cứ tại phiên tòa xét xử các vụ án hình sự",
+    "2026-08-14", "vksndtc", "huong-dan", "con"],
   ["cv-662-2026-tandtc", "huong-dan", "Công văn TANDTC giải đáp vướng mắc áp dụng BLHS (10/2026)", "662/TANDTC-PC",
     "Giải quyết một số vướng mắc trong áp dụng quy định của Bộ luật Hình sự (có nội dung dùng dao có tính sát thương cao giết người)",
     "2026-10-27", "tandtc", "giai-dap", "con"],
@@ -314,6 +332,19 @@ const ROWS: Row[] = [
     "14/HDLN-BCA-VKSNDTC",
     "Phối hợp tiếp nhận, giải quyết tố giác, tin báo về tội phạm sử dụng mạng máy tính, mạng viễn thông, phương tiện điện tử chiếm đoạt tài sản",
     "2022-07-20", "lien-nganh", "huong-dan", "con", "", "BCA, VKSNDTC"],
+  // ---------------- Liên ngành làm án tỉnh Ninh Bình ----------------
+  ["kl-ln-ninh-binh-q3-2026", "dia-phuong", "Kết luận liên ngành quý III/2026: nguồn tin, thỉnh thị, không khởi tố, tạm đình chỉ; giải đáp dao sát thương cao, phạm nhân phạm tội mới, người chưa thành niên, gây rối – cố ý gây thương tích",
+    "2380/VKS-TB", "Thông báo kết luận Hội nghị phối hợp liên ngành quý III năm 2026", "2026-10-26", "dia-phuong", "huong-dan", "con", "",
+    "Liên ngành Công an – VKSND – TAND tỉnh Ninh Bình"],
+  ["tb-01-2026-ln-ninh-binh", "dia-phuong", "Thông báo chỉ đạo liên ngành 01/2026: không hình sự hóa quan hệ kinh tế, dân sự; dao có tính sát thương cao; tách vụ án, xử lý chuyển hướng người chưa thành niên",
+    "01/2026/KL-LN", "Thông báo chỉ đạo liên ngành Công an – VKSND – TAND tỉnh Ninh Bình", "2026-01-25", "dia-phuong", "huong-dan", "con", "",
+    "Liên ngành Công an – VKSND – TAND tỉnh Ninh Bình"],
+  ["kl-ln-ninh-binh-q4-2025", "dia-phuong", "Kết luận liên ngành quý IV/2025: giải đáp vướng mắc làm giả giấy tờ, đánh bạc qua mạng, lô đề, chiếm đoạt nhiều lần, tiêu thụ tài sản, tai nạn giao thông, tạm giam, vật chứng, thi hành án hình sự",
+    "492/TB-VKS", "Thông báo kết luận Hội nghị phối hợp liên ngành quý IV năm 2025 (giải đáp khó khăn, vướng mắc)", "2025-12-15", "dia-phuong", "giai-dap",
+    "con", "Họ tên người trong các tình huống đã được viết tắt khi đăng.", "Liên ngành Công an – VKSND – TAND tỉnh Ninh Bình"],
+  ["tb-149-2025-rkn-ninh-binh", "dia-phuong", "Rút kinh nghiệm kiểm sát bản án sơ thẩm: đề nghị áp dụng Điều 38, 58, 47, 48 BLHS và Điều 106 BLTTHS (xử lý vật chứng)",
+    "149/TB-P7-VKS", "Thông báo rút kinh nghiệm qua công tác kiểm sát bản án hình sự sơ thẩm", "2025-03-04", "dia-phuong", "huong-dan", "con",
+    "Tên bị cáo đã được viết tắt khi đăng.", "Phòng 7 – VKSND tỉnh Ninh Bình"],
 ];
 
 /** Lĩnh vực Thi hành án hình sự: thi hành án, tạm giữ, tạm giam, tha tù, đặc xá... */
