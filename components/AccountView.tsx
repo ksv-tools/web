@@ -56,11 +56,12 @@ export function AccountView() {
       {user.admin && (
         <div className="panel">
           <h3>Quản trị</h3>
-          <p>
-            <Link href="/quan-tri" className="link">
-              Tải văn bản nội bộ lên máy chủ
-            </Link>
+          <p className="muted" style={{ margin: "4px 0 12px" }}>
+            Duyệt tài khoản đăng ký mới, tải văn bản nội bộ lên máy chủ.
           </p>
+          <Link href="/quan-tri" className="btn btn-primary btn-sm">
+            Vào trang Quản trị
+          </Link>
         </div>
       )}
       <p className="muted">

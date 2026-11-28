@@ -60,6 +60,8 @@ function doPost(e) {
       case 'doc': return json_(getDoc_(body));
       case 'doc-upload': return json_(uploadDoc_(body));
       case 'doc-list': return json_(listDocs_(body));
+      case 'acc-list': return json_(listAccounts_(body));
+      case 'acc-set': return json_(setAccount_(body));
       default: break;
     }
     if (body.type === 'de-xuat') return json_(suggest_(body));
@@ -212,15 +214,69 @@ function notifyDecisions() {
     if ((status !== ST_OK && status !== ST_NO) || r[C.notified - 1]) continue;
     const email = String(r[C.email - 1]);
     const ok = status === ST_OK;
-    mail_(email, SITE_NAME + (ok ? ': tài khoản đã được duyệt' : ': yêu cầu đăng ký chưa được chấp nhận'),
-      ok
-        ? 'Tài khoản ' + email + ' đã được duyệt. Bạn có thể đăng nhập ' + SITE_NAME + ' để tải công cụ và xem văn bản nội bộ.'
-        : 'Yêu cầu đăng ký tài khoản ' + email + ' chưa được chấp nhận. Liên hệ người quản trị nếu cần.');
+    mailDecision_(email, ok);
     sh.getRange(i + 1, C.notified).setValue(new Date());
     if (ok && !r[C.approved - 1]) sh.getRange(i + 1, C.approved).setValue(new Date());
     sent++;
   }
   SpreadsheetApp.getActive().toast('Đã gửi ' + sent + ' email.', SITE_NAME);
+}
+
+function mailDecision_(email, ok) {
+  mail_(email, SITE_NAME + (ok ? ': tài khoản đã được duyệt' : ': yêu cầu đăng ký chưa được chấp nhận'),
+    ok
+      ? 'Tài khoản ' + email + ' đã được duyệt. Bạn có thể đăng nhập ' + SITE_NAME + ' để tải công cụ và xem văn bản nội bộ.'
+      : 'Yêu cầu đăng ký tài khoản ' + email + ' chưa được chấp nhận. Liên hệ người quản trị nếu cần.');
+}
+
+/** Trang Quản trị trên web: danh sách tài khoản (không trả mật khẩu băm). */
+function listAccounts_(b) {
+  const acc = accountFromToken_(b.token);
+  if (!acc || !isOwner_(acc.email)) return { ok: false, error: 'Chỉ người quản trị.' };
+  const rows = accounts_().getDataRange().getValues();
+  const iso = function (v) {
+    return v instanceof Date ? v.toISOString() : String(v || '');
+  };
+  const list = [];
+  for (let i = 1; i < rows.length; i++) {
+    const r = rows[i];
+    if (!r[C.email - 1]) continue;
+    list.push({
+      email: String(r[C.email - 1]), name: String(r[C.name - 1]), unit: String(r[C.unit - 1]), role: String(r[C.role - 1]),
+      phone: String(r[C.phone - 1]), via: String(r[C.via - 1]), status: String(r[C.status - 1] || ST_PENDING),
+      created: iso(r[C.created - 1]), approved: iso(r[C.approved - 1]), note: String(r[C.note - 1]),
+      notified: iso(r[C.notified - 1]), owner: isOwner_(r[C.email - 1]),
+    });
+  }
+  return { ok: true, accounts: list };
+}
+
+/** Trang Quản trị: đổi trạng thái một tài khoản và gửi email báo kết quả ngay. */
+function setAccount_(b) {
+  const me = accountFromToken_(b.token);
+  if (!me || !isOwner_(me.email)) return { ok: false, error: 'Chỉ người quản trị.' };
+  const status = String(b.status || '');
+  if ([ST_OK, ST_NO, ST_LOCK, ST_PENDING].indexOf(status) < 0) return { ok: false, error: 'Trạng thái không hợp lệ.' };
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const acc = findAccount_(b.email);
+    if (!acc) return { ok: false, error: 'Không tìm thấy tài khoản.' };
+    if (isOwner_(acc.email)) return { ok: false, error: 'Không đổi trạng thái tài khoản quản trị.' };
+    const patch = { status: status };
+    if (status === ST_OK && !acc.approved) patch.approved = new Date();
+    if (b.note != null) patch.note = clean_(b.note, 300);
+    // Báo qua email khi duyệt hoặc từ chối lần đầu (khóa / mở lại thì không gửi).
+    const mail = (status === ST_OK || status === ST_NO) && acc.status !== status && b.notify !== false;
+    if (mail) {
+      mailDecision_(acc.email, status === ST_OK);
+      patch.notified = new Date();
+    }
+    saveAccount_(acc, patch);
+    return { ok: true, mailed: mail };
+  } finally {
+    lock.releaseLock();
+  }
 }
 
 /* ======================= Văn bản nội bộ ======================= */
@@ -412,7 +468,7 @@ function notifyOwnerNew_(v) {
   mail_(ownerEmail_(), SITE_NAME + ': có người đăng ký mới – ' + v.name,
     ['Họ tên: ' + v.name, 'Email: ' + v.email, 'Đơn vị: ' + (v.unit || ''), 'Chức vụ: ' + (v.role || ''),
       'Điện thoại: ' + (v.phone || ''), 'Cách đăng nhập: ' + v.via, '',
-      'Duyệt: mở Google Sheet, trang "' + ACCOUNT_SHEET + '", sửa cột Trạng thái thành "' + ST_OK + '" hoặc "' + ST_NO +
+      'Duyệt: vào trang Quản trị trên web (https://ksvtools.io.vn/quan-tri), hoặc mở Google Sheet, trang "' + ACCOUNT_SHEET + '", sửa cột Trạng thái thành "' + ST_OK + '" hoặc "' + ST_NO +
       '", rồi bấm menu ' + SITE_NAME + ' → Gửi email báo kết quả duyệt.'].join('\n'));
 }
 

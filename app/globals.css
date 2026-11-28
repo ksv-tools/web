@@ -2995,3 +2995,158 @@ a.tool-card:hover .tool-name {
 .admin-table input[type="file"] {
   max-width: 260px;
 }
+
+/* Quản trị: duyệt tài khoản */
+.acc-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.acc-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  vertical-align: middle;
+}
+
+.acc-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.acc-filter {
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.acc-search {
+  flex: 1 1 220px;
+  max-width: 320px;
+  padding: 8px 12px;
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  font: inherit;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.acc-list {
+  display: grid;
+  border-top: 1px solid var(--line);
+}
+
+.acc-row {
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.acc-info {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.acc-info > b {
+  font-size: 16px;
+}
+
+.acc-meta {
+  font-size: 13px;
+}
+
+.acc-st {
+  justify-self: start;
+  padding: 1px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.acc-st-ok {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.acc-st-wait {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.acc-st-no {
+  background: var(--err-soft);
+  color: var(--err);
+}
+
+.acc-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  flex: none;
+}
+
+@media (max-width: 640px) {
+  .acc-row {
+    flex-direction: column;
+  }
+}
+
+/* Đăng nhập Google: lớp chờ */
+.auth-busy {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(2px);
+}
+
+.auth-busy-box {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 28px 36px;
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--ink);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+}
+
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--line);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .auth-busy {
+    background: rgba(0, 0, 0, 0.5);
+  }
+}

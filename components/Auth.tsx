@@ -163,6 +163,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [ready, setReady] = useState(false);
   const [gsiReady, setGsiReady] = useState(false);
   const [googleError, setGoogleError] = useState("");
+  const [googleBusy, setGoogleBusy] = useState(false);
   const extra = useRef<Extra>({});
 
   const save = useCallback((u: User | null) => {
@@ -173,8 +174,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const onGoogle = useCallback(
     async (credential: string) => {
       setGoogleError("");
+      setGoogleBusy(true);
       const p = decodeJwt(credential);
       const r = await api("google", { credential, ...extra.current });
+      setGoogleBusy(false);
       const u = fromResult(r, typeof p.picture === "string" ? p.picture : null);
       if (u) save(u);
       else setGoogleError(r.error ?? "Không đăng nhập được bằng Google.");
@@ -255,7 +258,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     refresh,
     signOut,
   };
-  return <AuthCtx.Provider value={value}>{children}</AuthCtx.Provider>;
+  return (
+    <AuthCtx.Provider value={value}>
+      {children}
+      {googleBusy && (
+        <div className="auth-busy" role="status" aria-live="polite">
+          <div className="auth-busy-box">
+            <span className="spinner" aria-hidden="true" />
+            Đang đăng nhập bằng Google…
+          </div>
+        </div>
+      )}
+    </AuthCtx.Provider>
+  );
 }
 
 /** Nút "Tiếp tục với Google" do Google vẽ. Chế độ thử trên máy: nút giả tạo tài khoản thử. */
