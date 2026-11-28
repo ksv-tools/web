@@ -23,13 +23,16 @@ export const FIELDS: { id: FieldId; name: string; ready: boolean }[] = [
 ];
 
 /** Nhóm văn bản trong một lĩnh vực. */
-export type GroupId = "luat" | "thong-tu" | "huong-dan" | "dia-phuong";
+export type GroupId = "luat" | "thong-tu" | "huong-dan" | "quy-che" | "dia-phuong" | "cntt" | "khac";
 
 export const GROUPS: { id: GroupId; name: string }[] = [
-  { id: "luat", name: "Luật và bộ luật" },
-  { id: "thong-tu", name: "Thông tư, thông tư liên tịch" },
+  { id: "luat", name: "Luật, Bộ luật" },
+  { id: "thong-tu", name: "Thông tư, TTLT" },
   { id: "huong-dan", name: "Văn bản hướng dẫn, giải đáp" },
-  { id: "dia-phuong", name: "Văn bản liên ngành làm án tỉnh Ninh Bình" },
+  { id: "quy-che", name: "Quy chế, TBRKN" },
+  { id: "dia-phuong", name: "Liên ngành Ninh Bình" },
+  { id: "cntt", name: "CNTT" },
+  { id: "khac", name: "VB khác" },
 ];
 
 export type IssuerId = "quoc-hoi" | "chinh-phu" | "lien-nganh" | "hdtp" | "tandtc" | "vksndtc" | "bo-nganh" | "dia-phuong";

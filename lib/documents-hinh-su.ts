@@ -99,6 +99,8 @@ const FILES: Record<string, string> = {
   "tb-01-2026-ln-ninh-binh": "Bản gốc do người quản trị cung cấp",
   "kl-ln-ninh-binh-q4-2025": "Bản gốc do người quản trị cung cấp",
   "tb-149-2025-rkn-ninh-binh": "Bản gốc do người quản trị cung cấp",
+  "qd-297-2026-vkstc-truc": "Bản gốc do người quản trị cung cấp",
+  "nd-151-2024-giao-thong": "Công báo điện tử (congbao.chinhphu.vn)",
 };
 
 /** Văn bản có toàn văn dạng trang HTML (trích từ nguồn đăng toàn văn) thay cho PDF. */
@@ -231,11 +233,11 @@ const ROWS: Row[] = [
   ["tt-75-2024-bca", "thong-tu", "Thông tư hướng dẫn Luật vũ khí – danh mục dao có tính sát thương cao (2024)", "75/2024/TT-BCA",
     "Quy định chi tiết một số điều của Luật Quản lý, sử dụng vũ khí, vật liệu nổ và công cụ hỗ trợ; Phụ lục 05: danh mục dao có tính sát thương cao",
     "2024-11-15", "bo-nganh", "thong-tu", "con", "Hiệu lực 01/01/2025.", "Bộ Công an"],
-  ["qd-69-2026-vkstc-thinh-thi", "thong-tu", "Quy định về hướng dẫn, giải đáp vướng mắc và thỉnh thị, trả lời thỉnh thị trong ngành Kiểm sát (2026)",
+  ["qd-69-2026-vkstc-thinh-thi", "quy-che", "Quy định về hướng dẫn, giải đáp vướng mắc và thỉnh thị, trả lời thỉnh thị trong ngành Kiểm sát (2026)",
     "69/QĐ-VKSTC",
     "Quy định về công tác hướng dẫn, giải đáp vướng mắc về pháp luật, nghiệp vụ; báo cáo thỉnh thị, trả lời thỉnh thị trong ngành Kiểm sát nhân dân",
     "2026-03-30", "vksndtc", "quy-che", "con", "Thay Quyết định 599/QĐ-VKSTC năm 2019."],
-  ["qd-06-vkstc-quy-che", "thong-tu", "Quy chế thực hành quyền công tố, kiểm sát khởi tố, điều tra, truy tố (2026)", "06/QĐ-VKSTC",
+  ["qd-06-vkstc-quy-che", "quy-che", "Quy chế thực hành quyền công tố, kiểm sát khởi tố, điều tra, truy tố (2026)", "06/QĐ-VKSTC",
     "Quy chế công tác thực hành quyền công tố, kiểm sát việc tiếp nhận, giải quyết nguồn tin về tội phạm, khởi tố, điều tra, truy tố", "2026",
     "vksndtc", "quy-che", "con", "Thay Quyết định 111/QĐ-VKSTC năm 2020; kèm 18 biểu mẫu."],
   ["nd-19-2018-ma-tuy", "thong-tu", "Nghị định tính tổng khối lượng, thể tích chất ma túy (2018)", "19/2018/NĐ-CP",
@@ -281,7 +283,7 @@ const ROWS: Row[] = [
   ["nq-04-2026-hdtp", "huong-dan", "Nghị quyết HĐTP hướng dẫn cơ chế đặc thù khi xét xử vi phạm pháp luật đất đai", "04/2026/NQ-HĐTP",
     "Hướng dẫn áp dụng cơ chế, chính sách đặc thù thuộc thẩm quyền của Tòa án khi giải quyết, xét xử vi phạm pháp luật về đất đai",
     "2026-08-18", "hdtp", "nghi-quyet", "con", "Hiệu lực 15/10/2026; có nội dung về truy cứu trách nhiệm hình sự."],
-  ["cv-2189-2026-vkstc", "huong-dan", "Công văn VKSNDTC giải đáp: không thay tạm giữ bằng cấm đi khỏi nơi cư trú, hủy bỏ tạm giữ khi khởi tố bị can (11/2026)",
+  ["cv-2189-2026-vkstc", "cntt", "Công văn VKSNDTC giải đáp: không thay tạm giữ bằng cấm đi khỏi nơi cư trú, hủy bỏ tạm giữ khi khởi tố bị can (11/2026)",
     "2189/C2",
     "Phúc đáp vướng mắc về Nền tảng Quản lý án hình sự: trường hợp đang tạm giữ, gia hạn tạm giữ rồi khởi tố bị can, áp dụng cấm đi khỏi nơi cư trú",
     "2026-11-11", "vksndtc", "giai-dap", "con", "", "Cục Thống kê tội phạm và chuyển đổi số – VKSNDTC"],
@@ -342,9 +344,16 @@ const ROWS: Row[] = [
   ["kl-ln-ninh-binh-q4-2025", "dia-phuong", "Kết luận liên ngành quý IV/2025: giải đáp vướng mắc làm giả giấy tờ, đánh bạc qua mạng, lô đề, chiếm đoạt nhiều lần, tiêu thụ tài sản, tai nạn giao thông, tạm giam, vật chứng, thi hành án hình sự",
     "492/TB-VKS", "Thông báo kết luận Hội nghị phối hợp liên ngành quý IV năm 2025 (giải đáp khó khăn, vướng mắc)", "2025-12-15", "dia-phuong", "giai-dap",
     "con", "Họ tên người trong các tình huống đã được viết tắt khi đăng.", "Liên ngành Công an – VKSND – TAND tỉnh Ninh Bình"],
-  ["tb-149-2025-rkn-ninh-binh", "dia-phuong", "Rút kinh nghiệm kiểm sát bản án sơ thẩm: đề nghị áp dụng Điều 38, 58, 47, 48 BLHS và Điều 106 BLTTHS (xử lý vật chứng)",
+  ["tb-149-2025-rkn-ninh-binh", "quy-che", "Rút kinh nghiệm kiểm sát bản án sơ thẩm: đề nghị áp dụng Điều 38, 58, 47, 48 BLHS và Điều 106 BLTTHS (xử lý vật chứng)",
     "149/TB-P7-VKS", "Thông báo rút kinh nghiệm qua công tác kiểm sát bản án hình sự sơ thẩm", "2025-03-04", "dia-phuong", "huong-dan", "con",
     "Tên bị cáo đã được viết tắt khi đăng.", "Phòng 7 – VKSND tỉnh Ninh Bình"],
+  // ---------------- Văn bản khác ----------------
+  ["qd-297-2026-vkstc-truc", "khac", "Quy định trực ngoài giờ hành chính trong ngành Kiểm sát nhân dân (2026)", "297/QĐ-VKSTC",
+    "Ban hành Quy định trực ngoài giờ hành chính trong ngành Kiểm sát nhân dân", "2026-09-16", "vksndtc", "quy-che", "con",
+    "Thay Quy định số 01/QyĐ-VKSTC ngày 09/01/2019."],
+  ["nd-151-2024-giao-thong", "khac", "Nghị định hướng dẫn Luật Trật tự, an toàn giao thông đường bộ (2024)", "151/2024/NĐ-CP",
+    "Quy định chi tiết một số điều và biện pháp thi hành Luật Trật tự, an toàn giao thông đường bộ", "2024-11-15", "chinh-phu", "nghi-dinh", "con",
+    "Tham khảo khi xử lý tội vi phạm quy định về tham gia giao thông đường bộ."],
 ];
 
 /** Lĩnh vực Thi hành án hình sự: thi hành án, tạm giữ, tạm giam, tha tù, đặc xá... */
@@ -363,11 +372,11 @@ const ROWS_THA: Row[] = [
     "Quy định chi tiết một số điều của Luật Thi hành tạm giữ, tạm giam và cấm đi khỏi nơi cư trú", "2026-06-18", "chinh-phu", "nghi-dinh", "con"],
   ["tt-57-2026-bca", "thong-tu", "Thông tư về chế độ quản lý giam giữ người bị tạm giữ, tạm giam (2026)", "57/2026/TT-BCA",
     "Quy định về chế độ quản lý giam giữ người bị tạm giữ, người bị tạm giam", "2026-05-15", "bo-nganh", "thong-tu", "con", "", "Bộ Công an"],
-  ["ttlt-13-2026-so-hoa-tam-giu", "thong-tu", "TTLT về số hóa hồ sơ, chia sẻ dữ liệu trong thi hành tạm giữ, tạm giam, án hình sự tại cộng đồng (2026)",
+  ["ttlt-13-2026-so-hoa-tam-giu", "cntt", "TTLT về số hóa hồ sơ, chia sẻ dữ liệu trong thi hành tạm giữ, tạm giam, án hình sự tại cộng đồng (2026)",
     "13/2026/TTLT-BCA-BQP-BTP-TANDTC-VKSNDTC",
     "Phối hợp trong số hóa hồ sơ, ký số, kết nối, chia sẻ dữ liệu trong hoạt động thi hành tạm giữ, tạm giam và cấm đi khỏi nơi cư trú; thi hành án hình sự tại cộng đồng; tái hòa nhập cộng đồng; hỗ trợ tư pháp; quản lý kho vật chứng và tài liệu, đồ vật",
     "2026-09-09", "lien-nganh", "ttlt", "con", "Hiệu lực 09/9/2026.", "BCA, BQP, BTP, TANDTC, VKSNDTC"],
-  ["ttlt-12-2026-so-hoa-thahs", "thong-tu", "TTLT về số hóa hồ sơ, ký số, chia sẻ dữ liệu trong thi hành án hình sự (2026)",
+  ["ttlt-12-2026-so-hoa-thahs", "cntt", "TTLT về số hóa hồ sơ, ký số, chia sẻ dữ liệu trong thi hành án hình sự (2026)",
     "12/2026/TTLT-BCA-BQP-TANDTC-VKSNDTC",
     "Phối hợp trong việc số hóa hồ sơ, ký số và kết nối, chia sẻ dữ liệu trong hoạt động thi hành án hình sự",
     "2026-06-30", "lien-nganh", "ttlt", "con", "Hiệu lực 01/7/2026.", "BCA, BQP, TANDTC, VKSNDTC"],
