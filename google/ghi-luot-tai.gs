@@ -36,9 +36,9 @@ const ST_LOCK = 'Khóa';
 
 // Cột của trang "Tài khoản" (đếm từ 1).
 const ACC_HEAD = ['Email', 'Họ tên', 'Đơn vị', 'Chức vụ', 'Điện thoại', 'Cách đăng nhập', 'Trạng thái', 'Ngày đăng ký',
-  'Ngày duyệt', 'Ghi chú', 'Đã báo kết quả', 'Muối', 'Mã băm', 'Mã khôi phục', 'Hạn mã'];
+  'Ngày duyệt', 'Ghi chú', 'Đã báo kết quả', 'Muối', 'Mã băm', 'Mã khôi phục', 'Hạn mã', 'Văn bản đã lưu'];
 const C = { email: 1, name: 2, unit: 3, role: 4, phone: 5, via: 6, status: 7, created: 8, approved: 9, note: 10,
-  notified: 11, salt: 12, hash: 13, code: 14, codeExp: 15 };
+  notified: 11, salt: 12, hash: 13, code: 14, codeExp: 15, saved: 16 };
 
 /* ======================= Điểm vào ======================= */
 
@@ -62,6 +62,8 @@ function doPost(e) {
       case 'doc-list': return json_(listDocs_(body));
       case 'acc-list': return json_(listAccounts_(body));
       case 'acc-set': return json_(setAccount_(body));
+      case 'saved-get': return json_(getSaved_(body));
+      case 'saved-set': return json_(setSaved_(body));
       default: break;
     }
     if (body.type === 'de-xuat') return json_(suggest_(body));
@@ -277,6 +279,36 @@ function setAccount_(b) {
   } finally {
     lock.releaseLock();
   }
+}
+
+/* ======================= Văn bản đã lưu (theo tài khoản) ======================= */
+
+function parseSaved_(v) {
+  try {
+    const a = JSON.parse(String(v || '[]'));
+    return Array.isArray(a) ? a.filter(function (x) { return typeof x === 'string'; }) : [];
+  } catch (err) {
+    return [];
+  }
+}
+
+function getSaved_(b) {
+  const acc = accountFromToken_(b.token);
+  if (!acc) return { ok: false, error: 'Cần đăng nhập.', expired: true };
+  return { ok: true, ids: parseSaved_(acc.saved) };
+}
+
+function setSaved_(b) {
+  const acc = accountFromToken_(b.token);
+  if (!acc) return { ok: false, error: 'Cần đăng nhập.', expired: true };
+  const ids = (Array.isArray(b.ids) ? b.ids : [])
+    .map(function (x) { return String(x).replace(/[^a-z0-9-]/g, '').slice(0, 80); })
+    .filter(function (x, i, a) { return x && a.indexOf(x) === i; })
+    .slice(0, 500);
+  const sh = accounts_();
+  if (!sh.getRange(1, C.saved).getValue()) sh.getRange(1, C.saved).setValue(ACC_HEAD[C.saved - 1]);
+  saveAccount_(acc, { saved: JSON.stringify(ids) });
+  return { ok: true, ids: ids };
 }
 
 /* ======================= Văn bản nội bộ ======================= */

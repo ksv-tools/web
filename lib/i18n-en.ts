@@ -481,4 +481,12 @@ export const EN: Record<string, string> = {
   "và đăng nhập bằng tài khoản Google.": "and sign in with your Google account.",
   "và đăng nhập (dùng được tài khoản ChatGPT sẵn có).": "and sign in (your existing ChatGPT account works).",
   "nếu bạn tải từ trang này.": "if you downloaded it from this site.",
+  "Mở ở trang Văn bản": "Open in Documents",
+  "Chưa lưu văn bản nào. Ở trang": "No saved documents yet. On the",
+  ", bấm ☆ Lưu ở văn bản hay dùng để đưa vào đây; danh sách đi theo tài khoản, đăng nhập máy khác vẫn thấy.":
+    "page, click ☆ Save on documents you use often to keep them here; the list follows your account, so it appears on other devices too.",
+  "Lọc theo tên, số hiệu…": "Filter by title, number…",
+  "Xem": "View",
+  "Bỏ lưu": "Unsave",
+  "Không có văn bản khớp.": "No matching documents.",
 };

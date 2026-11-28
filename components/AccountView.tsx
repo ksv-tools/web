@@ -7,6 +7,7 @@ import { useAuth } from "./Auth";
 import { Avatar } from "./Avatar";
 import { Icon } from "./Icon";
 import { PendingNotice } from "./LoginBox";
+import { SavedDocsPanel } from "./SavedDocsPanel";
 
 export function AccountView() {
   const { user, ready, approved, signOut } = useAuth();
@@ -15,7 +16,13 @@ export function AccountView() {
     if (ready && !user) router.replace("/dang-nhap?next=/tai-khoan");
   }, [ready, user, router]);
   if (!user) return <p className="muted">Đang tải…</p>;
-  if (!approved) return <PendingNotice />;
+  if (!approved)
+    return (
+      <>
+        <PendingNotice />
+        <SavedDocsPanel />
+      </>
+    );
 
   return (
     <>
@@ -34,6 +41,7 @@ export function AccountView() {
           </button>
         </div>
       </div>
+      <SavedDocsPanel />
       <div className="panel">
         <h3>Tài khoản</h3>
         <dl className="kv">

@@ -1,6 +1,9 @@
 "use client";
 
-/** Văn bản đã lưu: ghi trong trình duyệt của người dùng (localStorage), không gửi đi đâu. */
+/**
+ * Văn bản đã lưu: ghi trong trình duyệt (localStorage). Khi đã đăng nhập thì đồng bộ theo tài khoản
+ * (cột "Văn bản đã lưu" của trang Tài khoản trong Google Sheet), nên máy khác đăng nhập cũng thấy.
+ */
 import { useSyncExternalStore } from "react";
 
 const KEY = "ksv-van-ban-da-luu";
@@ -19,7 +22,7 @@ function read(): string[] {
   return cache;
 }
 
-function write(ids: string[]) {
+function write(ids: string[], push = true) {
   cache = ids;
   try {
     localStorage.setItem(KEY, JSON.stringify(ids));
@@ -27,6 +30,35 @@ function write(ids: string[]) {
     /* trình duyệt chặn lưu trữ: vẫn giữ trong phiên này */
   }
   listeners.forEach((l) => l());
+  if (push) schedulePush();
+}
+
+/* ---------------- Đồng bộ với tài khoản ---------------- */
+
+type Remote = {
+  get: () => Promise<string[] | null>;
+  set: (ids: string[]) => Promise<void>;
+};
+let remote: Remote | null = null;
+let timer: ReturnType<typeof setTimeout> | undefined;
+
+function schedulePush() {
+  if (!remote) return;
+  clearTimeout(timer);
+  const r = remote;
+  timer = setTimeout(() => void r.set(read()), 800);
+}
+
+/** Gọi khi đăng nhập: gộp danh sách trên máy với danh sách của tài khoản. Gọi với null khi đăng xuất. */
+export async function connectSaved(r: Remote | null) {
+  remote = r;
+  if (!r) return;
+  const server = await r.get();
+  if (!server || remote !== r) return;
+  const local = read();
+  const merged = [...local, ...server.filter((id) => !local.includes(id))];
+  write(merged, false);
+  if (merged.length !== server.length || merged.some((id, i) => id !== server[i])) void r.set(merged);
 }
 
 function subscribe(l: () => void) {
@@ -48,5 +80,6 @@ export function useSavedDocs() {
   const saved = useSyncExternalStore(subscribe, read, () => EMPTY);
   const toggle = (id: string) =>
     write(saved.includes(id) ? saved.filter((x) => x !== id) : [id, ...saved]);
-  return { saved, toggle };
+  const remove = (id: string) => write(saved.filter((x) => x !== id));
+  return { saved, toggle, remove };
 }

@@ -3,6 +3,7 @@ import { AuthProvider } from "@/components/Auth";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { PREFS_BOOT } from "@/components/Prefs";
+import { SavedSync } from "@/components/SavedSync";
 import { SITE_NAME, SITE_TAGLINE } from "@/lib/config";
 import "./globals.css";
 
@@ -20,6 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <AuthProvider>
+          <SavedSync />
           <Header />
           <main>{children}</main>
           <Footer />
