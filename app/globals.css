@@ -3318,6 +3318,8 @@ a.tool-card:hover .tool-name {
   }
 }
 
-.acc-head > .btn {
-  margin-left: auto;
+.panel .acc-head > .btn {
+  width: auto;
+  flex: none;
+  margin: 0 0 0 auto;
 }
