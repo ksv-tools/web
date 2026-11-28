@@ -3043,7 +3043,7 @@ a.tool-card:hover .tool-name {
 .acc-head h3 {
   white-space: nowrap;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 8px;
   margin: 0;
