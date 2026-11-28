@@ -3039,7 +3039,9 @@ a.tool-card:hover .tool-name {
   margin-bottom: 6px;
 }
 
-.acc-head h2 {
+.acc-head h2,
+.acc-head h3 {
+  white-space: nowrap;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -3314,4 +3316,8 @@ a.tool-card:hover .tool-name {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+.acc-head > .btn {
+  margin-left: auto;
 }
