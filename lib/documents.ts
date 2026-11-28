@@ -8,6 +8,7 @@
  * thông tin của cơ quan ban hành).
  */
 
+import { RELATED_CLUSTERS, SIGNERS } from "./doc-extra";
 import { HINH_SU, THA_HINH_SU } from "./documents-hinh-su";
 
 /** Sáu lĩnh vực của mục Văn bản. `ready: false` thì hiện "Đang xây dựng". */
@@ -110,13 +111,24 @@ export type LegalDoc = {
   html?: boolean;
   /** Nguồn của bản toàn văn, ví dụ "Công báo" hoặc "vbpl.vn". */
   source?: string;
+  /** Người ký (lib/doc-extra.ts). */
+  signers?: string[];
+  /** Id các văn bản liên quan (cùng cụm vấn đề trong lib/doc-extra.ts). */
+  related?: string[];
 };
 
 /**
  * Danh sách đang được người quản trị duyệt (bản để duyệt: danh-sach-van-ban/*.xlsx).
  * Chỉ thêm vào đây những văn bản đã duyệt "Đăng".
  */
-export const DOCUMENTS: LegalDoc[] = [...HINH_SU, ...THA_HINH_SU];
+export const DOCUMENTS: LegalDoc[] = [...HINH_SU, ...THA_HINH_SU].map((d) => {
+  const related = [...new Set(RELATED_CLUSTERS.filter((c) => c.ids.includes(d.id)).flatMap((c) => c.ids))].filter((x) => x !== d.id);
+  return { ...d, signers: SIGNERS[d.id], related: related.length ? related : undefined };
+});
+
+export function groupName(id: GroupId): string {
+  return GROUPS.find((g) => g.id === id)?.name ?? id;
+}
 
 export function issuerName(id: IssuerId): string {
   return ISSUERS.find((i) => i.id === id)?.name ?? id;

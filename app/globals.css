@@ -2157,3 +2157,655 @@ a.tool-card:hover .tool-name {
 .author span {
   color: var(--ink-2);
 }
+
+/* ---------- Trang tra cứu văn bản (bố cục 3 cột kiểu cổng văn bản) ---------- */
+
+.page-head.is-compact {
+  padding: 40px 0 34px;
+}
+
+.page-head.is-compact h1 {
+  font-size: clamp(26px, 3.4vw, 38px);
+}
+
+.page-head.is-compact .lead {
+  margin-top: 8px;
+  font-size: 15.5px;
+}
+
+.vb-section {
+  padding-top: 0;
+  background: var(--bg-2);
+}
+
+.vb .wrap {
+  max-width: 1440px;
+}
+
+/* Thanh lĩnh vực */
+.vb-fields {
+  background: var(--navy);
+  position: sticky;
+  top: var(--header);
+  z-index: 20;
+}
+
+.vb-fields-in {
+  display: flex;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.vb-fields-in a {
+  flex: none;
+  padding: 15px 20px;
+  color: rgb(255 255 255 / 0.82);
+  font-weight: 500;
+  font-size: 15.5px;
+  border-bottom: 3px solid transparent;
+  white-space: nowrap;
+}
+
+.vb-fields-in a:hover {
+  color: #ffffff;
+  background: rgb(255 255 255 / 0.06);
+}
+
+.vb-fields-in a[aria-current="page"] {
+  color: #ffffff;
+  background: rgb(255 255 255 / 0.1);
+  border-bottom-color: var(--sky);
+  font-weight: 700;
+}
+
+.vb-fields-in a.is-soon {
+  color: rgb(255 255 255 / 0.5);
+}
+
+/* Ô tìm kiếm lớn */
+.vb-searchbar {
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  padding: 18px 0;
+}
+
+.vb-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vb-search > svg {
+  color: var(--ink-3);
+  flex: none;
+}
+
+.vb-search input {
+  flex: 1;
+  min-width: 0;
+  height: 50px;
+  padding: 0 16px;
+  border: 1.5px solid var(--line-2);
+  border-radius: 8px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.vb-search input:focus {
+  outline: none;
+  border-color: var(--sky-strong);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sky-strong) 20%, transparent);
+}
+
+.vb-search .btn {
+  min-height: 50px;
+}
+
+/* Ba cột */
+.vb-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr) 300px;
+  gap: 20px;
+  align-items: start;
+  padding-top: 22px;
+}
+
+.vb-layout > *,
+.vb-side > *,
+.vb-aside > * {
+  min-width: 0;
+}
+
+.vb-card {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.vb-card-head {
+  margin: 0;
+  padding: 12px 16px;
+  background: var(--navy);
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.vb-side,
+.vb-aside {
+  display: grid;
+  gap: 16px;
+  position: sticky;
+  top: calc(var(--header) + 70px);
+}
+
+/* Nhóm văn bản, bộ lọc */
+.vb-groups,
+.vb-subgroups,
+.vb-facet ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vb-groups > li > a,
+.vb-groups > li > button,
+.vb-subgroups button,
+.vb-facet button {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  color: var(--ink);
+  text-align: left;
+  font: inherit;
+  font-size: 15px;
+}
+
+.vb-groups span,
+.vb-facet span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vb-groups b,
+.vb-facet b {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+.vb-groups a:hover,
+.vb-groups button:hover,
+.vb-facet button:hover {
+  background: var(--sky-soft);
+  color: var(--navy);
+}
+
+.vb-groups a[aria-current="page"],
+.vb-groups button[aria-pressed="true"],
+.vb-facet button[aria-pressed="true"] {
+  background: var(--brand-soft);
+  color: var(--brand);
+  font-weight: 700;
+  box-shadow: inset 3px 0 0 var(--brand);
+}
+
+.vb-groups-saved svg {
+  color: var(--gold);
+}
+
+.vb-subgroups button {
+  padding: 8px 16px 8px 30px;
+  font-size: 14px;
+  color: var(--ink-2);
+}
+
+/* Danh sách văn bản */
+.vb-main {
+  min-height: 300px;
+}
+
+.vb-main-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 12px 18px;
+  background: var(--navy);
+  color: #ffffff;
+}
+
+.vb-main-head h2 {
+  font-size: 17px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.vb-main-head span {
+  display: inline-flex;
+  gap: 14px;
+  align-items: center;
+  font-size: 14px;
+  color: rgb(255 255 255 / 0.8);
+}
+
+.vb-main-head .link-btn {
+  color: var(--sky);
+}
+
+.vb-main .empty {
+  padding: 32px 20px;
+}
+
+.vb-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.vb-item {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 280px;
+  gap: 16px;
+  padding: 20px 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.vb-item:last-child {
+  border-bottom: 0;
+}
+
+.vb-item:hover {
+  background: color-mix(in srgb, var(--sky-soft) 45%, transparent);
+}
+
+.vb-no {
+  font-family: var(--font-heading), var(--font-body), Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--sky-strong);
+  line-height: 1.2;
+}
+
+.vb-item-main {
+  display: grid;
+  gap: 7px;
+  align-content: start;
+}
+
+.vb-title {
+  font-family: var(--font-heading), var(--font-body), Arial, sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--navy);
+}
+
+.vb-title:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.vb-sub {
+  color: var(--ink-2);
+  font-size: 14.5px;
+}
+
+.vb-note {
+  font-size: 13.5px;
+  color: var(--warn);
+}
+
+.vb-snippet {
+  font-size: 14px;
+  color: var(--ink-2);
+  background: var(--bg-2);
+  border-left: 3px solid var(--gold);
+  padding: 8px 12px;
+  border-radius: 0 6px 6px 0;
+}
+
+.vb-snippet mark {
+  background: #ffe58a;
+  color: #1c2027;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.vb-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  margin-top: 4px;
+  font-size: 14px;
+}
+
+.vb-actions a,
+.vb-actions button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--sky-strong);
+  font: inherit;
+  font-size: 14px;
+}
+
+.vb-actions a:hover,
+.vb-actions button:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.vb-actions button.is-on {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.vb-related {
+  margin: 6px 0 0;
+  padding: 10px 14px 10px 30px;
+  background: var(--bg-2);
+  border-radius: 6px;
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.vb-related a {
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.vb-related a:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.vb-related span {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink-3);
+}
+
+/* Ô thông tin chi tiết bên cạnh văn bản */
+.vb-box {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  align-self: start;
+  font-size: 13.5px;
+  background: var(--bg);
+}
+
+.vb-box-head {
+  padding: 8px 12px;
+  background: var(--sky-soft);
+  color: var(--navy);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.vb-box dl {
+  display: grid;
+  grid-template-columns: 78px minmax(0, 1fr);
+  margin: 0;
+}
+
+.vb-box dt,
+.vb-box dd {
+  margin: 0;
+  padding: 6px 12px;
+  border-top: 1px solid var(--line);
+}
+
+.vb-box dt {
+  color: var(--ink-3);
+  padding-right: 0;
+}
+
+.vb-box dd {
+  color: var(--ink);
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.vb-effect {
+  display: inline-block;
+  padding: 1px 9px;
+  border-radius: 99px;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.vb-effect.is-con {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.vb-effect.is-sua-doi {
+  background: var(--warn-soft);
+  color: var(--warn);
+}
+
+.vb-effect.is-het {
+  background: var(--err-soft);
+  color: var(--err);
+}
+
+/* Cột phải */
+.vb-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  padding: 16px 8px;
+}
+
+.vb-stats b {
+  display: block;
+  font-family: var(--font-heading), var(--font-body), Arial, sans-serif;
+  font-size: 26px;
+  color: var(--navy);
+}
+
+.vb-stats span {
+  font-size: 13px;
+  color: var(--ink-3);
+}
+
+.vb-latest {
+  margin: 0;
+  padding: 10px 16px 12px 34px;
+  display: grid;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.vb-latest li::marker {
+  color: var(--sky-strong);
+  font-weight: 700;
+}
+
+.vb-latest a {
+  color: var(--navy);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.vb-latest a:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}
+
+.vb-latest span {
+  display: block;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+.vb-suggest {
+  display: grid;
+  gap: 4px;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--navy), #1f4d7a);
+  color: #ffffff;
+  border: 0;
+}
+
+.vb-suggest span {
+  font-size: 13.5px;
+  color: rgb(255 255 255 / 0.82);
+}
+
+.vb-suggest:hover {
+  filter: brightness(1.1);
+}
+
+/* Màn hình vừa: cột phải xuống dưới */
+@media (max-width: 1240px) {
+  .vb-layout {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+  .vb-aside {
+    grid-column: 1 / -1;
+    position: static;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .vb-item {
+    grid-template-columns: 40px minmax(0, 1fr) 250px;
+  }
+}
+
+/* Máy tính bảng, điện thoại: một cột, ô thông tin xuống dưới tên văn bản */
+@media (max-width: 900px) {
+  .vb-layout {
+    grid-template-columns: 1fr;
+  }
+  .vb-side {
+    position: static;
+    gap: 0;
+  }
+  /* Nhóm văn bản thành hàng nút cuộn ngang; bộ lọc phụ ẩn cho gọn. */
+  .vb-side .vb-card {
+    border: 0;
+    background: none;
+    overflow: visible;
+  }
+  .vb-side .vb-card-head,
+  .vb-side .vb-facet,
+  .vb-subgroups {
+    display: none;
+  }
+  .vb-groups {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: thin;
+  }
+  .vb-groups > li {
+    flex: none;
+  }
+  .vb-groups > li > a,
+  .vb-groups > li > button {
+    width: auto;
+    padding: 8px 14px;
+    border: 1px solid var(--line-2);
+    border-radius: 99px;
+    background: var(--bg);
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .vb-groups a[aria-current="page"],
+  .vb-groups button[aria-pressed="true"] {
+    box-shadow: none;
+    border-color: var(--brand);
+  }
+  .vb-item {
+    grid-template-columns: 32px minmax(0, 1fr);
+    padding: 16px 12px;
+    gap: 10px;
+  }
+  .vb-box {
+    grid-column: 2;
+  }
+  .vb-no {
+    font-size: 19px;
+  }
+  .vb-fields {
+    position: static;
+  }
+}
+
+@media (max-width: 640px) {
+  .vb-search {
+    flex-wrap: wrap;
+  }
+  .vb-search > svg {
+    display: none;
+  }
+  .vb-search .btn {
+    width: 100%;
+  }
+  .vb-searchbar {
+    padding: 12px 0;
+  }
+  .vb-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .vb-no {
+    display: none;
+  }
+  .vb-box {
+    grid-column: 1;
+  }
+}
+
+.doc-related {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.doc-related h3 {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  margin-bottom: 8px;
+}
+
+.doc-related ul {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.doc-related a {
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.doc-related a:hover {
+  color: var(--brand);
+  text-decoration: underline;
+}

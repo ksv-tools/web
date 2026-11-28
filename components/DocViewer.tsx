@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { withBase } from "@/lib/config";
-import { EFFECT_LABEL, GROUPS, docFile, fieldName, fmtDate, getDoc, issuerName, typeName } from "@/lib/documents";
+import { EFFECT_LABEL, GROUPS, docFile, docHref, fieldName, fmtDate, getDoc, issuerName, typeName } from "@/lib/documents";
 import { Icon } from "./Icon";
 import { PageHead } from "./PageHead";
 
@@ -14,7 +14,7 @@ export function DocViewer() {
   if (!d) {
     return (
       <>
-        <PageHead title="Không tìm thấy văn bản" crumbs={[{ href: "/van-ban", label: "Văn bản hướng dẫn" }]} />
+        <PageHead title="Không tìm thấy văn bản" crumbs={[{ href: "/van-ban", label: "Văn bản" }]} />
         <section className="section" style={{ paddingTop: 48 }}>
           <div className="wrap">
             <p className="empty">
@@ -27,6 +27,7 @@ export function DocViewer() {
   }
 
   const file = withBase(docFile(d));
+  const related = (d.related ?? []).map((id) => getDoc(id)).filter((x): x is NonNullable<typeof x> => Boolean(x));
   const group = GROUPS.find((g) => g.id === d.group)?.name;
 
   return (
@@ -35,7 +36,7 @@ export function DocViewer() {
         title={d.name}
         lead={d.title !== d.name ? d.title : undefined}
         crumbs={[
-          { href: "/van-ban", label: "Văn bản hướng dẫn" },
+          { href: "/van-ban", label: "Văn bản" },
           { href: `/van-ban?linh-vuc=${d.field}`, label: fieldName(d.field) },
         ]}
       >
@@ -56,6 +57,12 @@ export function DocViewer() {
               <dd>{fmtDate(d.date)}</dd>
               <dt>Cơ quan ban hành</dt>
               <dd>{d.issuerDetail ?? issuerName(d.issuer)}</dd>
+              {d.signers && (
+                <>
+                  <dt>Người ký</dt>
+                  <dd>{d.signers.join(", ")}</dd>
+                </>
+              )}
               {d.effect && (
                 <>
                   <dt>Hiệu lực</dt>
@@ -70,6 +77,18 @@ export function DocViewer() {
               )}
             </dl>
             {d.note && <p className="doc-note">{d.note}</p>}
+            {related.length > 0 && (
+              <div className="doc-related">
+                <h3>Văn bản liên quan</h3>
+                <ul>
+                  {related.map((r) => (
+                    <li key={r.id}>
+                      <Link href={docHref(r)}>{r.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
             {d.hasFile && (
               <div className="doc-actions">
                 <a href={file} target="_blank" rel="noopener" className="btn btn-primary btn-sm">

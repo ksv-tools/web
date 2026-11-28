@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Suspense } from "react";
 import { DocsBrowser } from "@/components/DocsBrowser";
 import { PageHead } from "@/components/PageHead";
@@ -14,18 +13,13 @@ export default function DocsPage() {
   return (
     <>
       <PageHead
-        title="Văn bản hướng dẫn"
+        title="Tra cứu văn bản"
         image="/anh/don-vi-tuyen-truyen.webp"
-        lead="Luật, thông tư, giải đáp nghiệp vụ — đọc toàn văn ngay trên web."
-        crumbs={[{ href: "/van-ban", label: "Văn bản hướng dẫn" }]}
-      >
-        <div style={{ marginTop: 24 }}>
-          <Link href="/de-xuat" className="btn btn-light btn-sm">
-            Đề xuất đăng tài liệu
-          </Link>
-        </div>
-      </PageHead>
-      <section className="section" style={{ paddingTop: 0 }}>
+        lead="Luật, thông tư, giải đáp nghiệp vụ — tìm trong cả nội dung, đọc toàn văn ngay trên web."
+        crumbs={[{ href: "/van-ban", label: "Văn bản" }]}
+        compact
+      />
+      <section className="section vb-section">
         <Suspense>
           <DocsBrowser />
         </Suspense>

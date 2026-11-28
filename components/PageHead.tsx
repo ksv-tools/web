@@ -8,6 +8,7 @@ export function PageHead({
   children,
   image,
   credit,
+  compact,
 }: {
   title: string;
   lead?: React.ReactNode;
@@ -17,10 +18,12 @@ export function PageHead({
   image?: string;
   /** Ghi nguồn ảnh (bắt buộc với ảnh lấy từ trang khác yêu cầu ghi nguồn). */
   credit?: { text: string; href: string };
+  /** Phần đầu thấp gọn (trang tra cứu: để nội dung lên sát trên). */
+  compact?: boolean;
 }) {
   return (
     <section
-      className={image ? "page-head has-photo" : "page-head"}
+      className={`page-head${image ? " has-photo" : ""}${compact ? " is-compact" : ""}`}
       style={image ? ({ "--ph-img": `url(${withBase(image)})` } as React.CSSProperties) : undefined}
     >
       <div className="wrap">
