@@ -1,6 +1,7 @@
 import { Logo } from "./Logo";
 import { MobileMenu } from "./MobileMenu";
 import { type NavItem, NavLinks } from "./NavLinks";
+import { Prefs } from "./Prefs";
 import { UserMenu } from "./UserMenu";
 
 const ITEMS: NavItem[] = [
@@ -18,6 +19,7 @@ export function Header() {
         <Logo />
         <NavLinks items={ITEMS} className="nav" />
         <div className="header-end">
+          <Prefs />
           <UserMenu />
           <MobileMenu>
             <NavLinks items={ITEMS} className="nav-mobile" />

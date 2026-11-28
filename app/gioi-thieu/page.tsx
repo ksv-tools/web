@@ -11,6 +11,7 @@ export default function AboutPage() {
       <PageHead
         title="Giới thiệu"
         image="/anh/don-vi-ky-ket.webp"
+        imagePos="center 72%"
         lead="Công cụ nhỏ cho những việc lặp đi lặp lại trong công tác kiểm sát."
         crumbs={[{ href: "/gioi-thieu", label: "Giới thiệu" }]}
       />

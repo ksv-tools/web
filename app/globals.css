@@ -39,7 +39,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #14161a;
     --bg-2: #1b1e23;
     --bg-3: #23272d;
@@ -72,6 +72,40 @@
     --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
     color-scheme: dark;
   }
+}
+
+:root[data-theme="dark"] {
+  --bg: #14161a;
+  --bg-2: #1b1e23;
+  --bg-3: #23272d;
+  --ink: #eceef1;
+  --ink-2: #a9b0ba;
+  --ink-3: #7f8792;
+  --line: #2c3037;
+  --line-2: #3d424a;
+  --brand: #ef6b6f;
+  --brand-hover: #f59a9d;
+  --brand-soft: #3a1c1e;
+  --brand-ink: #1a0b0c;
+  --brand-2: #f28a8d;
+  --navy: #0f2438;
+  --navy-ink: #ffffff;
+  --sky: #8fcdf7;
+  --sky-strong: #8fcdf7;
+  --sky-soft: #1d3a52;
+  --band: #5e1417;
+  --band-ink: #fbeeee;
+  --gold: #e0b955;
+  --ok: #6fce9d;
+  --ok-soft: #1c3529;
+  --warn: #eec667;
+  --warn-soft: #3a2f13;
+  --err: #f2998f;
+  --err-soft: #41201d;
+  --footer: #0d0f12;
+  --footer-ink: #a9b0ba;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.3);
+  color-scheme: dark;
 }
 
 *,
@@ -3153,7 +3187,61 @@ a.tool-card:hover .tool-name {
 }
 
 @media (prefers-color-scheme: dark) {
-  .auth-busy {
+  :root:not([data-theme="light"]) .auth-busy {
     background: rgba(0, 0, 0, 0.5);
   }
+}
+
+:root[data-theme="dark"] .auth-busy {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+/* Nút nền sáng/tối, ngôn ngữ ở đầu trang */
+.prefs {
+  display: flex;
+  gap: 6px;
+}
+
+.pref-btn {
+  display: inline-grid;
+  place-items: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 8px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-2);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pref-btn:hover {
+  color: var(--brand);
+  border-color: var(--line-2);
+}
+
+.pref-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Nền tối: chữ logo đầu trang sáng lên cho dễ đọc */
+:root[data-theme="dark"] .header .logo {
+  color: var(--ink);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .header .logo {
+    color: var(--ink);
+  }
+}
+
+/* Đang chuyển giao diện sang tiếng Anh: ẩn chữ một thoáng cho khỏi nháy tiếng Việt */
+.tr-wait main,
+.tr-wait .header-in,
+.tr-wait footer {
+  opacity: 0;
 }

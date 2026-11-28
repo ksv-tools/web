@@ -11,6 +11,19 @@ export const POINTS: Record<string, string[]> = {
     "Phần các tội phạm: từ Điều 108 đến Điều 425",
     "Sửa đổi 2025: bỏ hình phạt tử hình ở một số tội, tội mới về ma túy (Điều 256a)",
   ],
+  "luat-ttatgtdb-hop-nhat": [
+    "Quy tắc giao thông đường bộ; tốc độ, khoảng cách, nồng độ cồn, ma túy khi lái xe",
+    "Điều kiện phương tiện, người lái xe; giấy phép lái xe, điểm giấy phép lái xe",
+    "Tuần tra, kiểm soát; giải quyết tai nạn giao thông đường bộ",
+    "Sửa đổi 2025 (hiệu lực 01/7/2026): thời gian lái xe liên tục, một số quy định về đăng ký xe",
+  ],
+  "luat-xlvphc-hop-nhat": [
+    "Nguyên tắc, thời hiệu, tình tiết giảm nhẹ, tăng nặng trong xử phạt vi phạm hành chính",
+    "Hình thức xử phạt, biện pháp khắc phục hậu quả; thẩm quyền xử phạt",
+    "Chuyển hồ sơ vụ vi phạm có dấu hiệu tội phạm để truy cứu trách nhiệm hình sự và ngược lại",
+    "Biện pháp xử lý hành chính: giáo dục tại xã, trường giáo dưỡng, cơ sở cai nghiện bắt buộc",
+    "Biện pháp ngăn chặn: tạm giữ người, tạm giữ tang vật, phương tiện",
+  ],
   "bltths-hop-nhat": [
     "Toàn bộ Bộ luật Tố tụng hình sự đã cập nhật sửa đổi 2021, 2024, 2025",
     "Tiếp nhận, giải quyết nguồn tin về tội phạm; khởi tố, điều tra, truy tố, xét xử",
@@ -74,22 +87,10 @@ export const POINTS: Record<string, string[]> = {
     "Kỳ báo cáo, nguồn số liệu, đối chiếu số liệu",
     "Cơ sở dữ liệu thống kê và chia sẻ dữ liệu",
   ],
-  "ttlt-12-2026-tuong-tro": [
-    "Yêu cầu nước ngoài cam kết liên quan đến hình phạt tử hình",
-    "Lấy lời khai trực tuyến theo yêu cầu nước ngoài",
-    "Chuyển giao tạm thời người đang bị tạm giam, chấp hành án",
-    "Yêu cầu nước ngoài truy cứu TNHS và xử lý yêu cầu truy cứu của nước ngoài",
-  ],
   "ttlt-11-2026-ly-lich": [
     "Tra cứu, xác minh thông tin lý lịch tư pháp, tiền án của người phạm tội",
     "Thông tin do Tòa án, VKS, Công an, thi hành án dân sự cung cấp",
     "Thời hạn cung cấp thông tin; rà soát dữ liệu",
-  ],
-  "ttlt-06-2026-dan-do": [
-    "Tiếp nhận, chuyển yêu cầu dẫn độ của nước ngoài",
-    "Lập yêu cầu dẫn độ của Việt Nam",
-    "Chuyển giao người bị dẫn độ; biên bản bàn giao",
-    "Thời hạn 30 ngày, lý do bất khả kháng",
   ],
   "tt-03-2026-vkstc-bieu-mau": [
     "Biểu mẫu văn bản tố tụng của VKS trong khởi tố, điều tra, truy tố",
