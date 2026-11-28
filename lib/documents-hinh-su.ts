@@ -128,7 +128,7 @@ const ROWS: Row[] = [
   ["nq-41-2017-qh14", "luat", "Nghị quyết thi hành Bộ luật Hình sự 2015", "41/2017/QH14",
     "Thi hành Bộ luật Hình sự 2015 đã sửa đổi năm 2017; hiệu lực thi hành BLTTHS, Luật Tổ chức CQĐTHS, Luật Thi hành tạm giữ, tạm giam",
     "2017-06-20", "quoc-hoi", "nq-qh", "con"],
-  ["nq-08-2021-ubtvqh15", "luat", "Giải thích khoản 1 Điều 289 Bộ luật Hình sự", "08/2021/NQ-UBTVQH15",
+  ["nq-08-2021-ubtvqh15", "huong-dan", "Nghị quyết UBTVQH giải thích khoản 1 Điều 289 BLHS (xâm nhập trái phép mạng máy tính)", "08/2021/NQ-UBTVQH15",
     "Nghị quyết giải thích khoản 1 Điều 289 Bộ luật Hình sự (xâm nhập trái phép mạng máy tính)", "2021-11-26", "quoc-hoi", "nq-qh", "con"],
   ["bltths-hop-nhat", "luat", "Bộ luật Tố tụng hình sự 2015 – văn bản hợp nhất (sửa đổi, bổ sung 2021, 2024, 2025)", "104/VBHN-VPQH",
     "Văn bản hợp nhất Bộ luật Tố tụng hình sự, cập nhật đến Luật sửa đổi năm 2025 (hiệu lực 01/7/2025)", "2025", "quoc-hoi", "bo-luat", "con",
