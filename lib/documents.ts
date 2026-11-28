@@ -30,7 +30,7 @@ export const GROUPS: { id: GroupId; name: string }[] = [
   { id: "luat", name: "Luật, Bộ luật" },
   { id: "thong-tu", name: "Thông tư, TTLT" },
   { id: "huong-dan", name: "Văn bản hướng dẫn, giải đáp" },
-  { id: "quy-che", name: "Quy chế, TBRKN" },
+  { id: "quy-che", name: "TBRKN" },
   { id: "dia-phuong", name: "Liên ngành Ninh Bình" },
   { id: "cntt", name: "CNTT" },
   { id: "khac", name: "VB khác" },
