@@ -24,20 +24,14 @@ export default function AboutPage() {
             </p>
 
             <h2>Người thực hiện</h2>
-            <p>
-              <strong>{AUTHOR}</strong>, {AUTHOR_UNIT}.
-            </p>
-            <figure className="photo">
+            <div className="author">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={withBase("/anh/don-vi.webp")}
-                alt="Cán bộ, Kiểm sát viên Viện kiểm sát nhân dân khu vực 3, tỉnh Ninh Bình trong buổi sinh hoạt chuyên đề"
-                width={1440}
-                height={960}
-                loading="lazy"
-              />
-              <figcaption>Tập thể Viện kiểm sát nhân dân khu vực 3, tỉnh Ninh Bình.</figcaption>
-            </figure>
+              <img src={withBase("/anh/tac-gia.webp")} alt={AUTHOR} width={800} height={1000} loading="lazy" />
+              <p>
+                <strong>{AUTHOR}</strong>
+                <span>{AUTHOR_UNIT}</span>
+              </p>
+            </div>
 
             <h2>Lưu ý</h2>
             <p>
@@ -49,7 +43,7 @@ export default function AboutPage() {
               Xem thêm <Link href="/chinh-sach" className="link">chính sách bảo vệ dữ liệu</Link>.
             </p>
             <p className="muted" style={{ fontSize: 13.5 }}>
-              Ảnh ở trang chủ, trang Giới thiệu, Văn bản và Đăng nhập do {AUTHOR_UNIT} cung cấp. Các ảnh minh họa khác lấy từ{" "}
+              Ảnh ở trang chủ, trang Giới thiệu, Văn bản và Đăng nhập do {AUTHOR_UNIT} và người thực hiện cung cấp. Các ảnh minh họa khác lấy từ{" "}
               <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer">
                 Unsplash
               </a>{" "}
