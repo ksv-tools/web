@@ -17,7 +17,8 @@
  * Duyệt tài khoản: ở trang "Tài khoản", sửa cột "Trạng thái" thành  Đã duyệt / Từ chối / Khóa,
  * rồi bấm menu KSV Tools → "Gửi email báo kết quả duyệt". Tài khoản của chính chủ Sheet được duyệt sẵn.
  *
- * Không ghi địa chỉ email của người quản trị vào mã: script dùng tài khoản Google đang chạy nó.
+ * Không ghi địa chỉ email của người quản trị vào mã: đặt ở Cài đặt dự án → Thuộc tính tập lệnh,
+ * thuộc tính OWNER_EMAIL = email Google của người quản trị.
  */
 
 const CLIENT_ID = '872161885117-g8k2g3vleuqs2n3e84n4402m01co0gor.apps.googleusercontent.com';
@@ -64,7 +65,8 @@ function doPost(e) {
     if (body.type === 'de-xuat') return json_(suggest_(body));
     return json_(logDownload_(body));
   } catch (err) {
-    return json_({ ok: false, error: 'Máy chủ gặp lỗi, thử lại sau.' });
+    console.error(err);
+    return json_({ ok: false, error: 'Máy chủ gặp lỗi, thử lại sau. (' + String((err && err.message) || err).slice(0, 200) + ')' });
   }
 }
 
@@ -453,12 +455,23 @@ function throttle_(key, max) {
   return n <= max;
 }
 
+/**
+ * Email người quản trị: đặt trong Cài đặt dự án → Thuộc tính tập lệnh, tên OWNER_EMAIL.
+ * (Session.getEffectiveUser cần thêm quyền userinfo.email mà @OnlyCurrentDoc không cấp.)
+ */
 function ownerEmail_() {
-  return Session.getEffectiveUser().getEmail();
+  const p = PropertiesService.getScriptProperties().getProperty('OWNER_EMAIL');
+  if (p) return normEmail_(p);
+  try {
+    return Session.getEffectiveUser().getEmail();
+  } catch (err) {
+    return '';
+  }
 }
 
 function isOwner_(email) {
-  return normEmail_(email) === normEmail_(ownerEmail_());
+  const owner = normEmail_(ownerEmail_());
+  return !!owner && normEmail_(email) === owner;
 }
 
 function normEmail_(v) {
