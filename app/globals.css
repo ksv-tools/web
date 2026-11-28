@@ -956,7 +956,7 @@ a.tool-card:hover .tool-name {
   background:
     linear-gradient(90deg, rgb(10 22 36 / 0.82) 0%, rgb(10 22 36 / 0.5) 48%, rgb(10 22 36 / 0.1) 100%),
     linear-gradient(0deg, rgb(10 22 36 / 0.45) 0%, rgb(10 22 36 / 0) 50%),
-    var(--ph-img) center 40% / cover no-repeat,
+    var(--ph-img) var(--ph-pos, center 40%) / cover no-repeat,
     var(--navy);
   color: #ffffff;
 }
@@ -2161,7 +2161,7 @@ a.tool-card:hover .tool-name {
 /* ---------- Trang tra cứu văn bản (bố cục 3 cột kiểu cổng văn bản) ---------- */
 
 .page-head.is-compact {
-  padding: 40px 0 34px;
+  padding: 72px 0 52px;
 }
 
 .page-head.is-compact h1 {

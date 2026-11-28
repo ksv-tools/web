@@ -9,6 +9,7 @@ export function PageHead({
   image,
   credit,
   compact,
+  imagePos,
 }: {
   title: string;
   lead?: React.ReactNode;
@@ -20,11 +21,13 @@ export function PageHead({
   credit?: { text: string; href: string };
   /** Phần đầu thấp gọn (trang tra cứu: để nội dung lên sát trên). */
   compact?: boolean;
+  /** Vị trí cắt ảnh nền, ví dụ "center 85%" để giữ phần dưới (người) của ảnh. */
+  imagePos?: string;
 }) {
   return (
     <section
       className={`page-head${image ? " has-photo" : ""}${compact ? " is-compact" : ""}`}
-      style={image ? ({ "--ph-img": `url(${withBase(image)})` } as React.CSSProperties) : undefined}
+      style={image ? ({ "--ph-img": `url(${withBase(image)})`, "--ph-pos": imagePos } as React.CSSProperties) : undefined}
     >
       <div className="wrap">
         <nav className="crumbs" aria-label="Đường dẫn">
