@@ -28,7 +28,7 @@ export default function Home() {
         </div>
         <div className="wrap hero-in">
           <span className="hero-brand">KSV Tools</span>
-          <h1>Không gian tiện ích số dành cho Kiểm sát viên</h1>
+          <h1>Tiện ích số cho Kiểm sát viên</h1>
           <p className="hero-motto">Đơn giản · Thuận tiện · Hiệu quả</p>
           <div className="hero-actions">
             <Link href="/cong-cu" className="btn btn-primary btn-lg">

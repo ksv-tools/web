@@ -1,7 +1,7 @@
 /** Cấu hình chung của web. Mọi giá trị ở đây đều công khai (web là trang tĩnh, ai cũng xem được mã). */
 
 export const SITE_NAME = "KSV Tools";
-export const SITE_TAGLINE = "Không gian tiện ích số dành cho Kiểm sát viên";
+export const SITE_TAGLINE = "Tiện ích số cho Kiểm sát viên";
 export const AUTHOR = "Trần Hồng Minh";
 export const AUTHOR_UNIT = "VKSND khu vực 3 Ninh Bình";
 

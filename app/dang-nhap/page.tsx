@@ -15,7 +15,7 @@ export default function LoginPage() {
           <span className="eyebrow" style={{ color: "inherit", opacity: 0.75 }}>
             KSV Tools
           </span>
-          <h2>Không gian tiện ích số dành cho Kiểm sát viên</h2>
+          <h2>Tiện ích số cho Kiểm sát viên</h2>
           <ul>
             <li>
               <Icon name="check" size={20} /> Đăng nhập bằng tài khoản Google sẵn có, không cần mật khẩu mới

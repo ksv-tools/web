@@ -18,7 +18,7 @@ export default function DocsPage() {
         lead="Luật, thông tư, giải đáp nghiệp vụ — tìm trong cả nội dung, đọc toàn văn ngay trên web."
         crumbs={[{ href: "/van-ban", label: "Văn bản" }]}
         compact
-        imagePos="center 70%"
+        imagePos="center 50%"
       />
       <section className="section vb-section">
         <Suspense>
