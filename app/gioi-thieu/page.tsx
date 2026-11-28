@@ -19,13 +19,8 @@ export default function AboutPage() {
           <article className="prose" style={{ maxWidth: 760 }}>
             <h2>Vì sao có trang này</h2>
             <p>
-              Nhiều việc trong công tác kiểm sát tốn thời gian mà không cần đến chuyên môn: tách và đặt tên hàng trăm
-              trang hồ sơ scan, tính đi tính lại thời hạn, tổng hợp hình phạt, soạn văn bản theo mẫu. Các công cụ ở đây
-              được làm ra để giảm bớt phần việc đó, giữ thời gian cho phần nghiệp vụ.
-            </p>
-            <p>
-              Công cụ được làm và dùng thử trong công việc thực tế trước khi chia sẻ. Công cụ mới được thêm dần theo nhu
-              cầu; nếu bạn có việc lặp đi lặp lại muốn tự động hóa, hãy góp ý với người quản trị.
+              Tách hồ sơ scan, tính thời hạn, tổng hợp hình phạt, soạn văn bản theo mẫu — những việc tốn thời gian mà
+              không cần chuyên môn. Công cụ ở đây làm thay phần đó, được dùng thử trong công việc thực tế trước khi chia sẻ.
             </p>
 
             <h2>Người thực hiện</h2>

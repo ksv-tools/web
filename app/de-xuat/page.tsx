@@ -10,7 +10,7 @@ export default function SuggestPage() {
       <PageHead
         title="Đề xuất tài liệu"
         image="/anh/huong-dan.jpg"
-        lead="Bạn biết một văn bản hướng dẫn, giải đáp hay tài liệu nghiệp vụ hữu ích chưa có trên trang? Gửi đề xuất để người quản trị xem xét đăng."
+        lead="Văn bản hữu ích chưa có trên trang? Gửi để người quản trị xem xét đăng."
         crumbs={[
           { href: "/van-ban", label: "Văn bản hướng dẫn" },
           { href: "/de-xuat", label: "Đề xuất tài liệu" },

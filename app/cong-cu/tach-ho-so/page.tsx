@@ -17,7 +17,7 @@ export default async function TachHoSoPage() {
       <PageHead
         title="Tách hồ sơ scan"
         image="/anh/cong-cu.jpg"
-        lead="Thả một file PDF scan gồm nhiều tài liệu ghép liền nhau, nhấn Tách. App chia thành từng văn bản, đặt tên theo tiêu đề đọc được, xếp theo thời gian và lập mục lục."
+        lead="Thả file PDF scan, nhấn Tách — app chia thành từng văn bản, đặt tên và lập mục lục."
         crumbs={[
           { href: "/cong-cu", label: "Công cụ" },
           { href: "/cong-cu/tach-ho-so", label: "Tách hồ sơ scan" },

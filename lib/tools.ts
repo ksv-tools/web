@@ -33,7 +33,7 @@ export const TOOLS: Tool[] = [
   {
     slug: "tach-ho-so",
     name: "Tách hồ sơ scan",
-    short: "Chia file PDF scan nhiều tài liệu thành từng văn bản, tự đặt tên theo tiêu đề, xếp theo ngày và lập mục lục.",
+    short: "Chia file PDF scan thành từng văn bản, tự đặt tên và lập mục lục.",
     areas: ["chung", "hinh-su", "dan-su", "hanh-chinh"],
     status: "ready",
     kind: "desktop",
@@ -42,7 +42,7 @@ export const TOOLS: Tool[] = [
   {
     slug: "thoi-han-to-tung",
     name: "Tính thời hạn tố tụng",
-    short: "Thời hạn tạm giữ, tạm giam, điều tra, truy tố và gia hạn theo Bộ luật Tố tụng hình sự, có nhắc trước khi hết hạn.",
+    short: "Thời hạn tạm giữ, tạm giam, điều tra, truy tố theo BLTTHS.",
     areas: ["hinh-su", "thi-hanh-an"],
     status: "soon",
     kind: "web",
@@ -51,7 +51,7 @@ export const TOOLS: Tool[] = [
   {
     slug: "tong-hop-hinh-phat",
     name: "Tổng hợp hình phạt",
-    short: "Tổng hợp hình phạt nhiều tội, nhiều bản án; trừ thời gian tạm giữ, tạm giam vào thời hạn chấp hành.",
+    short: "Tổng hợp hình phạt nhiều tội, nhiều bản án; trừ thời gian tạm giam.",
     areas: ["hinh-su", "thi-hanh-an"],
     status: "soon",
     kind: "web",
@@ -60,7 +60,7 @@ export const TOOLS: Tool[] = [
   {
     slug: "an-phi",
     name: "Tính án phí, lệ phí",
-    short: "Án phí sơ thẩm, phúc thẩm, có giá ngạch và không có giá ngạch theo quy định hiện hành.",
+    short: "Án phí sơ thẩm, phúc thẩm, có và không có giá ngạch.",
     areas: ["dan-su", "hanh-chinh"],
     status: "soon",
     kind: "web",
@@ -69,7 +69,7 @@ export const TOOLS: Tool[] = [
   {
     slug: "thoi-hieu",
     name: "Tính thời hiệu",
-    short: "Thời hiệu truy cứu trách nhiệm hình sự, thời hiệu khởi kiện, thời hạn kháng cáo, kháng nghị.",
+    short: "Thời hiệu truy cứu TNHS, khởi kiện; hạn kháng cáo, kháng nghị.",
     areas: ["hinh-su", "dan-su", "hanh-chinh"],
     status: "soon",
     kind: "web",
@@ -78,13 +78,16 @@ export const TOOLS: Tool[] = [
   {
     slug: "mau-van-ban",
     name: "Mẫu văn bản",
-    short: "Mẫu văn bản nghiệp vụ điền nhanh và xuất ra Word.",
+    short: "Mẫu văn bản nghiệp vụ điền nhanh, xuất ra Word.",
     areas: ["chung", "hinh-su", "dan-su", "hanh-chinh", "thi-hanh-an"],
     status: "soon",
     kind: "web",
     icon: "file",
   },
 ];
+
+/** Ảnh minh họa của công cụ: public/anh/cong-cu/<slug>.jpg (ảnh Unsplash, giấy phép miễn phí). */
+export const toolImage = (t: Tool) => `/anh/cong-cu/${t.slug}.jpg`;
 
 export function getTool(slug: string): Tool | undefined {
   return TOOLS.find((t) => t.slug === slug);
