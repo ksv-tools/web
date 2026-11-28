@@ -11,8 +11,6 @@ const SLIDES = [
   "/anh/don-vi-tap-the.webp",
   "/anh/don-vi-ky-ket.webp",
   "/anh/don-vi-tuyen-truyen.webp",
-  "/anh/don-vi-bien-tru-so.webp",
-  "/anh/don-vi.webp",
 ];
 
 export default function Home() {
@@ -24,7 +22,7 @@ export default function Home() {
             <div
               key={src}
               className="hero-slide"
-              style={{ backgroundImage: `url(${withBase(src)})`, animationDelay: `${i * 6}s` }}
+              style={{ backgroundImage: `url(${withBase(src)})`, animationDelay: `${i * 6}s`, animationDuration: `${SLIDES.length * 6}s` }}
             />
           ))}
         </div>
