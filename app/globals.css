@@ -2173,7 +2173,7 @@ a.tool-card:hover .tool-name {
 
 .page-head.is-compact .lead {
   margin-top: 8px;
-  font-size: 15.5px;
+  font-size: 16.5px;
 }
 
 .vb-section {
@@ -2204,7 +2204,7 @@ a.tool-card:hover .tool-name {
   padding: 13px 18px;
   color: rgb(255 255 255 / 0.82);
   font-weight: 500;
-  font-size: 14.5px;
+  font-size: 15.5px;
   border-bottom: 3px solid transparent;
   white-space: nowrap;
 }
@@ -2253,7 +2253,7 @@ a.tool-card:hover .tool-name {
   background: var(--bg);
   color: var(--ink);
   font: inherit;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .vb-search input:focus {
@@ -2293,7 +2293,7 @@ a.tool-card:hover .tool-name {
   padding: 10px 16px;
   background: var(--navy);
   color: #ffffff;
-  font-size: 13.5px;
+  font-size: 14.5px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -2332,7 +2332,7 @@ a.tool-card:hover .tool-name {
   color: var(--ink);
   text-align: left;
   font: inherit;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .vb-groups span,
@@ -2345,7 +2345,7 @@ a.tool-card:hover .tool-name {
 .vb-groups b,
 .vb-facet b {
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--ink-3);
 }
 
@@ -2371,7 +2371,7 @@ a.tool-card:hover .tool-name {
 
 .vb-subgroups button {
   padding: 8px 16px 8px 30px;
-  font-size: 14px;
+  font-size: 15px;
   color: var(--ink-2);
 }
 
@@ -2392,7 +2392,7 @@ a.tool-card:hover .tool-name {
 }
 
 .vb-main-head h2 {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.03em;
@@ -2402,7 +2402,7 @@ a.tool-card:hover .tool-name {
   display: inline-flex;
   gap: 14px;
   align-items: center;
-  font-size: 14px;
+  font-size: 15px;
   color: rgb(255 255 255 / 0.8);
 }
 
@@ -2452,7 +2452,7 @@ a.tool-card:hover .tool-name {
 
 .vb-title {
   font-family: var(--font-heading), var(--font-body), Arial, sans-serif;
-  font-size: 15.5px;
+  font-size: 16.5px;
   font-weight: 700;
   line-height: 1.4;
   color: var(--navy);
@@ -2465,16 +2465,16 @@ a.tool-card:hover .tool-name {
 
 .vb-sub {
   color: var(--ink-2);
-  font-size: 13.5px;
+  font-size: 14.5px;
 }
 
 .vb-note {
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--warn);
 }
 
 .vb-snippet {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--ink-2);
   background: var(--bg-2);
   border-left: 3px solid var(--gold);
@@ -2494,7 +2494,7 @@ a.tool-card:hover .tool-name {
   flex-wrap: wrap;
   gap: 4px 16px;
   margin-top: 2px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .vb-actions a,
@@ -2507,7 +2507,7 @@ a.tool-card:hover .tool-name {
   background: none;
   color: var(--sky-strong);
   font: inherit;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .vb-actions a:hover,
@@ -2528,7 +2528,7 @@ a.tool-card:hover .tool-name {
   border-radius: 6px;
   display: grid;
   gap: 6px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .vb-related a {
@@ -2543,7 +2543,7 @@ a.tool-card:hover .tool-name {
 
 .vb-related span {
   display: block;
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--ink-3);
 }
 
@@ -2553,7 +2553,7 @@ a.tool-card:hover .tool-name {
   border-radius: 8px;
   overflow: hidden;
   align-self: start;
-  font-size: 12.5px;
+  font-size: 13.5px;
   background: var(--bg);
 }
 
@@ -2562,7 +2562,7 @@ a.tool-card:hover .tool-name {
   background: var(--sky-soft);
   color: var(--navy);
   font-weight: 700;
-  font-size: 12.5px;
+  font-size: 13.5px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
 }
@@ -2593,7 +2593,7 @@ a.tool-card:hover .tool-name {
   background: none;
   color: var(--sky-strong);
   font: inherit;
-  font-size: 12.5px;
+  font-size: 13.5px;
   text-align: left;
 }
 
@@ -2608,7 +2608,7 @@ a.tool-card:hover .tool-name {
   flex-wrap: wrap;
   align-items: center;
   gap: 2px 0;
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--ink-3);
 }
 
@@ -2631,7 +2631,7 @@ a.tool-card:hover .tool-name {
   display: inline-block;
   padding: 1px 9px;
   border-radius: 99px;
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 700;
 }
 
@@ -2666,7 +2666,7 @@ a.tool-card:hover .tool-name {
 }
 
 .vb-stats span {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--ink-3);
 }
 
@@ -2675,7 +2675,7 @@ a.tool-card:hover .tool-name {
   padding: 10px 16px 12px 34px;
   display: grid;
   gap: 9px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .vb-latest li::marker {
@@ -2696,7 +2696,7 @@ a.tool-card:hover .tool-name {
 
 .vb-latest span {
   display: block;
-  font-size: 12.5px;
+  font-size: 13.5px;
   color: var(--ink-3);
   margin-top: 2px;
 }
@@ -2711,7 +2711,7 @@ a.tool-card:hover .tool-name {
 }
 
 .vb-suggest span {
-  font-size: 13.5px;
+  font-size: 14.5px;
   color: rgb(255 255 255 / 0.82);
 }
 
@@ -2771,7 +2771,7 @@ a.tool-card:hover .tool-name {
     border: 1px solid var(--line-2);
     border-radius: 99px;
     background: var(--bg);
-    font-size: 14px;
+    font-size: 15px;
     white-space: nowrap;
   }
   .vb-groups a[aria-current="page"],
@@ -2826,7 +2826,7 @@ a.tool-card:hover .tool-name {
 }
 
 .doc-related h3 {
-  font-size: 14px;
+  font-size: 15px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--ink-3);
@@ -2838,7 +2838,7 @@ a.tool-card:hover .tool-name {
   padding-left: 18px;
   display: grid;
   gap: 8px;
-  font-size: 14px;
+  font-size: 15px;
 }
 
 .doc-related a {
