@@ -8,7 +8,7 @@
  * thông tin của cơ quan ban hành).
  */
 
-import { HINH_SU } from "./documents-hinh-su";
+import { HINH_SU, THA_HINH_SU } from "./documents-hinh-su";
 
 /** Sáu lĩnh vực của mục Văn bản. `ready: false` thì hiện "Đang xây dựng". */
 export type FieldId = "hinh-su" | "dan-su" | "tha-hinh-su" | "tha-dan-su" | "khieu-nai" | "dang";
@@ -16,7 +16,7 @@ export type FieldId = "hinh-su" | "dan-su" | "tha-hinh-su" | "tha-dan-su" | "khi
 export const FIELDS: { id: FieldId; name: string; ready: boolean }[] = [
   { id: "hinh-su", name: "Hình sự", ready: true },
   { id: "dan-su", name: "Dân sự", ready: false },
-  { id: "tha-hinh-su", name: "Thi hành án hình sự", ready: false },
+  { id: "tha-hinh-su", name: "Thi hành án hình sự", ready: true },
   { id: "tha-dan-su", name: "Thi hành án dân sự", ready: false },
   { id: "khieu-nai", name: "Khiếu nại, tố cáo", ready: false },
   { id: "dang", name: "Văn bản Đảng", ready: false },
@@ -113,7 +113,7 @@ export type LegalDoc = {
  * Danh sách đang được người quản trị duyệt (bản để duyệt: danh-sach-van-ban/*.xlsx).
  * Chỉ thêm vào đây những văn bản đã duyệt "Đăng".
  */
-export const DOCUMENTS: LegalDoc[] = [...HINH_SU];
+export const DOCUMENTS: LegalDoc[] = [...HINH_SU, ...THA_HINH_SU];
 
 export function issuerName(id: IssuerId): string {
   return ISSUERS.find((i) => i.id === id)?.name ?? id;
