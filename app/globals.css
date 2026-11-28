@@ -1,4 +1,7 @@
 :root {
+  /* Font hệ thống như cổng văn bản VKS: Segoe UI (Windows), Roboto (Android), Arial dự phòng. */
+  --font-body: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --bg: #ffffff;
   --bg-2: #f5f5f4;
   --bg-3: #ecebea;
@@ -86,7 +89,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-body), Roboto, Arial, sans-serif;
+  font-family: var(--font-body);
   font-size: 14.5px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
